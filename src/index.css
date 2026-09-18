@@ -1,0 +1,171 @@
+/* Both faces are SIL Open Font License — free to bundle and redistribute.
+   Archivo stands in for PP Neue Montreal (commercial). See tailwind.config.js
+   Self-hosted so the clone makes NO external requests: Archivo ships as a
+   single variable file covering 100-900 (Google serves one file for every
+   weight — the four "static" downloads were byte-identical), IBM Plex Mono as
+   two static weights. Latin subset only; this site has no other scripts. */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/Archivo-var.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/IBMPlexMono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/IBMPlexMono-500.woff2') format('woff2');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    @apply bg-paper text-ink font-sans font-medium;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  /* Type scale from the original's .heading-style-* utilities.
+     Weight 500 and line-height .95 throughout — not the browser-default bold. */
+  h1 { font-size: 6.5rem; font-weight: 500; line-height: .95; letter-spacing: -.03em; }
+  h2 { font-size: 4rem;   font-weight: 500; line-height: .95; letter-spacing: -.03em; }
+  h3 { font-size: 3rem;   font-weight: 500; line-height: .95; letter-spacing: -.03em; }
+  h4 { font-size: 4rem;   font-weight: 500; line-height: .95; letter-spacing: -.03em; }
+  h5 { font-size: 1.25rem;font-weight: 500; line-height: 1.1; }
+  h6 { font-size: 1rem;   font-weight: 700; line-height: 1.5; }
+  /* Measured on the live original: h3 holds 48px down to 768px, it does NOT
+     drop to 24px at 991px. h1 104->64->40, h2 64->48->32. */
+  @media (max-width: 991px) {
+    h1 { font-size: 4rem; } h2 { font-size: 3rem; } h4 { font-size: 3rem; }
+  }
+  @media (max-width: 767px) {
+    h1 { font-size: 2.5rem; } h2 { font-size: 2rem; } h3 { font-size: 1.5rem; }
+    h4 { font-size: 2rem; } h6 { font-size: .75rem; }
+  }
+}
+
+@layer components {
+  .padding-global   { @apply px-5 md:px-10; }
+  .container-large  { @apply w-full max-w-large  mx-auto; }
+  .container-medium { @apply w-full max-w-medium mx-auto; }
+  .container-small  { @apply w-full max-w-small  mx-auto; }
+  /* Measured on .padding-section-large: 128px >=992, 96px 768-991, 64px <768,
+     48px <480. Tailwind's md/lg map to 768/1024 so 991-1024 is approximated
+     with an explicit 992px breakpoint below. */
+  .section-pad      { @apply py-12 min-[480px]:py-16 md:py-24 min-[1280px]:py-32; }
+  /* The original's Webflow .padding-section-large, measured on .section_stack:
+     128px >=992, 96px 768-991, 64px <768, 48px <480. Applied to the inner
+     content wrapper, not the <section>. */
+  .padding-section-large { @apply py-12 min-[480px]:py-16 min-[768px]:py-24 min-[992px]:py-32; }
+  /* The tall marketing/cta rhythm: 180px desktop, 80/64 down the scale */
+  .section-pad-xl   { @apply py-16 md:py-20 min-[992px]:py-[11.25rem]; }
+
+  .eyebrow, .stack_title {
+    /* Measured on the original .stack_title: IBM Plex Mono 14px / 18.2px (1.3),
+       letter-spacing .014em = 0.196px, weight 500, uppercase. NOT 12px/.3px. */
+    @apply font-mono text-sm font-medium uppercase leading-[1.3] tracking-[.014em] opacity-70;
+  }
+
+  /* Measured on .button: padding 14px 24px, radius 12px, gap 8px,
+     font 16px/500/20.8px. Secondary carries a 2px border inside the same box. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg md:rounded-btn
+           px-6 py-3.5 text-base font-medium leading-[1.3]
+           transition-all duration-200 active:scale-[.98];
+  }
+  /* Measured on the original .button: at <=479px the button itself takes
+     width:100% (hero 350px @390, is-white 318px @390). At 480-991px it stays
+     intrinsic (169.2px @520) because the button-group aligns flex-start. */
+  .btn { @apply max-[479px]:w-full; }
+  /* Navbar uses .button.is-small: 8px/20px, same 12px radius */
+  .btn-small { @apply !px-5 !py-2; }
+  /* Measured on the original .button: transition 0.2s, hover swaps the blue
+     fill to ink (#232323); the label colour and transform do NOT change. */
+  .btn-primary {
+    @apply btn bg-blue text-paper transition-colors duration-200 hover:bg-ink;
+  }
+  .btn-secondary {
+    @apply btn border-2 border-oat-dark bg-paper text-ink/90
+           hover:border-ink hover:bg-ink/5;
+  }
+  /* CTA sits on blue: white primary, dark tertiary. Measured from .is-white /
+     .is-tertiary on the live section_cta. */
+  .btn-white     { @apply btn bg-white text-ink hover:bg-white/90; }
+  .btn-tertiary  { @apply btn bg-ink text-white/70 hover:text-white; }
+
+  /* Measured on .navbar1_link: 8px/16px padding, 8px radius, colour is full
+     rgb(35,35,35) — not a 70% tint. */
+  /* Measured on .navbar1_link: transition 0.2s, opacity 0.7 at rest -> 1 on
+     hover. The colour stays rgb(35,35,35) and no background appears. */
+  .nav-link {
+    @apply rounded-lg border border-transparent px-4 py-2 text-lg leading-[1.3] text-ink
+           md:text-base opacity-70 transition-opacity duration-200 hover:opacity-100;
+  }
+}
+
+/* ---- Motion ---- */
+/* Marquee track is w-max and duplicated; the rail must clip it or the
+   duplicated half extends the document width. */
+.marquee-rail { overflow: hidden; width: 100%; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-marquee { animation: marquee var(--marquee-duration, 40s) linear infinite; }
+/* Measured on the original: the Splide auto-scroll logo rail does NOT pause on
+   hover (pauseOnHover:false); only the case-studies rail does (pauseOnHover:true). */
+.marquee-paused:hover .animate-marquee { animation-play-state: paused; }
+
+/* SplitText stand-in: masked words / lines.
+   The original wraps each word (h2) or line (paragraph) in an overflow:clip
+   mask with 20px of bleed padding so descenders aren't shaved, then tweens the
+   inner part from yPercent:100. */
+.fd-mask { display: inline-block; overflow: clip; vertical-align: top;
+           padding-bottom: 20px; margin-bottom: -20px;
+           padding-right: 20px; margin-right: -20px; }
+.fd-part { display: inline-block; will-change: transform, opacity; }
+
+/* Scroll reveal — GSAP-free baseline so content is visible without JS.
+   Once the motion module mounts it sets .motion-js and takes over, matching the
+   original's [fd-fade] (y 20 → 0, 1.3s power4.out) at 'top 80%'. */
+.reveal { opacity: 0; transform: translateY(20px); }
+.reveal.is-in { opacity: 1; transform: none; transition: opacity 1.3s cubic-bezier(.16,1,.3,1), transform 1.3s cubic-bezier(.16,1,.3,1); }
+.motion-js .reveal { transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .fd-part, .fd-char { transform: none !important; opacity: 1 !important; filter: none !important; }
+  .animate-marquee { animation: none; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+                           transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---- Hero ----
+   Baseline state is fully VISIBLE and readable: all the hidden/scaled starting
+   states are applied by GSAP at runtime only (useHeroIntro), so with JS off or
+   before motion runs nothing is stuck at opacity 0. */
+.hero_tag { border-color: #e2e1d3; background-color: #f0efe3; color: #c3c2b2; }
+.hero_step2-list-item { color: #c3c2b2; border-color: #e2e1d3; }
+/* The three audience fields are discrete block elements, one per line —
+   matching the original's <br>-separated fields at 12px/15.6px. */
+.hero_step3-text > div { display: block; }
+.hero_m-cards::-webkit-scrollbar { display: none; }
+/* Variant cards stack; GSAP absolutely positions 2 and 3 over the first. Until
+   it does, only show the first so the hero doesn't grow three cards tall. */
+.hero_steps-content > [data-step-last]:not(:first-child) { display: none; }
+.motion-js .hero_steps-content > [data-step-last]:not(:first-child) { display: flex; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero_tag { transform: none !important; opacity: 1 !important; }
+  .hero_step2-list-item img.hero_step2-list-icon { animation: none !important; }
+  .hero_steps-content > [data-step-last]:not(:first-child) { display: none !important; }
+}

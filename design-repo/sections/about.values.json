@@ -1,0 +1,23 @@
+{
+  "id": "about.values",
+  "type": "section",
+  "purpose": "Company values, presented as a zig-zag threaded list on desktop.",
+  "measuredFrom": "src/pages/AboutUs.jsx:162-263",
+  "usedOnTemplates": ["about"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "tagLabel": { "type": "string", "maxWords": 3 },
+      "heading": { "type": "string", "maxWords": 6 },
+      "values": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "type": "object", "properties": { "title": { "type": "string", "maxWords": 3 }, "body": { "type": "string", "maxWords": 55 } }, "required": ["title", "body"], "additionalProperties": false } }
+    },
+    "required": ["tagLabel", "heading", "values"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "exactCount": 5 },
+  "responsive": {
+    "desktop": "alternating self-end/self-start columns with per-card negative margin-top, threaded by a static 6846px SVG zig-zag that scroll-draws blue over an oat base — see src/pages/AboutUs.jsx:185-236 for exact per-card margins.",
+    "mobile": { "breakpoint": "<992px", "change": "stagger and zig-zag line both collapse — cards center-align in a plain flex column, gap 16px, margin-top 0." }
+  },
+  "motion": { "pattern": "line-draw scroll-linked stroke-dasharray + fd-fade per card", "reducedMotionFallback": "static full-length lines, cards at rest opacity" }
+}

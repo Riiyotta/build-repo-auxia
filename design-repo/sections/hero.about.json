@@ -1,0 +1,21 @@
+{
+  "id": "hero.about",
+  "type": "section",
+  "purpose": "About-page hero: mission statement plus 3 real headline stats.",
+  "measuredFrom": "src/pages/AboutUs.jsx:40-118",
+  "usedOnTemplates": ["about"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "tagLabel": { "type": "string", "maxWords": 3 },
+      "heading": { "type": "string", "maxWords": 12 },
+      "statsLabel": { "type": "string", "maxWords": 6 },
+      "stats": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "object", "properties": { "value": { "type": "string", "maxWords": 3 }, "label": { "type": "string", "maxWords": 8 } }, "required": ["value", "label"], "additionalProperties": false } }
+    },
+    "required": ["tagLabel", "heading", "statsLabel", "stats"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true },
+  "background": { "ground": "surface.dark-alt (#191919)" },
+  "motion": { "pattern": "SVG stroke-dasharray line-draw (DrawSVG hand-reproduction) + fd-fade-children on stat cards", "reducedMotionFallback": "render full static line paths at 100% dash, stat cards at rest opacity" }
+}

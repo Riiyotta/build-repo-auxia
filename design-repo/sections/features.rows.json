@@ -1,0 +1,40 @@
+{
+  "id": "features.rows",
+  "type": "section",
+  "purpose": "Alternating image/copy feature rows shared by both product pages, with an animated canvas connector between each row and a closing enterprise-assurance card block.",
+  "measuredFrom": "src/components/FeatureRows.jsx; src/components/FeaturesBottom.jsx",
+  "usedOnTemplates": ["product"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "items": {
+        "type": "array", "minItems": 4, "maxItems": 6,
+        "items": {
+          "type": "object",
+          "properties": {
+            "eyebrow": { "type": "string", "maxWords": 3 },
+            "title": { "type": "string", "maxWords": 14 },
+            "imageAssetRole": { "const": "diagram.generated-ui" },
+            "points": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "object", "properties": { "title": { "type": "string", "maxWords": 6 }, "body": { "type": "string", "maxWords": 45 } }, "required": ["title", "body"], "additionalProperties": false } }
+          },
+          "required": ["eyebrow", "title", "points"],
+          "additionalProperties": false
+        }
+      },
+      "bottom": {
+        "type": "object",
+        "properties": {
+          "heading": { "type": "string", "maxWords": 12 },
+          "body": { "type": "string", "maxWords": 35 },
+          "cards": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "object", "properties": { "label": { "type": "string", "maxWords": 6 }, "icon": { "type": "string" } }, "required": ["label"], "additionalProperties": false } }
+        },
+        "required": ["heading", "body", "cards"],
+        "additionalProperties": false
+      }
+    },
+    "required": ["items", "bottom"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "structuralNote": "The features_bottom block is a child INSIDE features_content, immediately preceded by a 6th connector that closes to center — not a sibling section. See src/components/FeatureRows.jsx:20-22." },
+  "motion": { "pattern": "feature-connector-canvas draw-in between rows, fd-fade-children on row copy/image", "reducedMotionFallback": "connectors render fully drawn, rows at rest opacity" }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "hero.product",
+  "type": "section",
+  "purpose": "Product-page hero establishing the specific product's value prop (Agent Studio or Decisioning), each with its own distinct animated visual.",
+  "measuredFrom": "src/components/AgentHero.jsx; src/components/DecisionHero.jsx",
+  "usedOnTemplates": ["product"],
+  "content": {
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "variant": { "const": "agent-studio" },
+          "heading": { "type": "string", "maxWords": 14 },
+          "body": { "type": "string", "maxWords": 40 },
+          "ctaLabel": { "type": "string", "maxWords": 3 },
+          "prompts": { "type": "array", "maxItems": 8, "items": { "type": "string", "maxWords": 8 } },
+          "visualAssetRole": { "const": "diagram.generated-ui" }
+        },
+        "required": ["variant", "heading", "body", "ctaLabel", "prompts"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "variant": { "const": "decisioning" },
+          "heading": { "type": "string", "maxWords": 14 },
+          "body": { "type": "string", "maxWords": 40 },
+          "ctaLabel": { "type": "string", "maxWords": 3 },
+          "users": { "type": "array", "maxItems": 3, "items": { "type": "object", "properties": { "name": { "type": "string", "maxWords": 3 }, "tags": { "type": "array", "maxItems": 2, "items": { "type": "string", "maxWords": 3 } } }, "required": ["name", "tags"], "additionalProperties": false } },
+          "offers": { "type": "array", "maxItems": 8, "items": { "type": "array", "maxItems": 2, "items": { "type": "string", "maxWords": 4 } } }
+        },
+        "required": ["variant", "heading", "body", "ctaLabel", "users", "offers"],
+        "additionalProperties": false
+      }
+    ]
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "maxPerPage": 1 },
+  "motion": {
+    "pattern": "per-group cascade timeline — agent-studio: y offsets user 48 / ingest 32 / offers 32 / cards 40 / experience 64 (see tokens/00-foundation/motion.json#productHeroTimeline)",
+    "reducedMotionFallback": "render final resting state for every group, no cascade"
+  },
+  "background": { "agent-studio": "css-radial-gradient dot field, 20px tile, on ink ground", "decisioning": "solid blue ground, no dot field" }
+}

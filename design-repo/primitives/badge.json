@@ -1,0 +1,10 @@
+{
+  "id": "badge",
+  "type": "primitive",
+  "description": "Small pill/tag label — eyebrow tags, category chips, agent-hero timeline tags.",
+  "measuredFrom": "src/components/DecisionHero.jsx:33-39; src/pages/Blog.jsx:179-181",
+  "props": {
+    "text": { "type": "string", "maxWords": 4 },
+    "variant": { "type": "enum", "values": ["eyebrow-mono", "pill-solid", "category-tagline"], "default": "eyebrow-mono" }
+  }
+}

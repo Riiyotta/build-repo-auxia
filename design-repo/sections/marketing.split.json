@@ -1,0 +1,22 @@
+{
+  "id": "marketing.split",
+  "type": "section",
+  "purpose": "Problem statement (dark ground) contrasting a messy vs. clean customer journey via two canvas diagrams.",
+  "measuredFrom": "src/components/Marketing.jsx",
+  "usedOnTemplates": ["home"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "headingLead": { "type": "string", "maxWords": 6 },
+      "headingMuted": { "type": "string", "maxWords": 6 },
+      "body": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "type": "string", "maxWords": 60 } },
+      "messCanvasAssetRole": { "const": "diagram.generated-ui" },
+      "cleanCanvasAssetRole": { "const": "diagram.generated-ui" }
+    },
+    "required": ["headingLead", "headingMuted", "body"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "background": { "ground": "surface.dark" },
+  "motion": { "pattern": "fd-h2 + fd-paragraph reveal on copy; dot-field-canvas('marketing-panel') is a static customer-journey diagram, redrawn not animated frame-by-frame", "reducedMotionFallback": "static final state, canvases still render (they are not decorative-only motion, they are the content)" }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "./_schema-note.txt",
+  "description": "Foundation color palette. Every value copied verbatim from src/../tailwind.config.js (extracted from the reference site's real CSS custom properties) — no invented colors.",
+  "measuredFrom": "tailwind.config.js:6-21",
+  "colors": {
+    "blue": { "value": "#0b4fff", "measuredFrom": "tailwind.config.js:8" },
+    "blue.dark": { "value": "#080331", "measuredFrom": "tailwind.config.js:8" },
+    "blue.light": { "value": "#d8dade", "measuredFrom": "tailwind.config.js:8" },
+    "orange": { "value": "#fa6838", "measuredFrom": "tailwind.config.js:9" },
+    "pink.dark": { "value": "#3c043b", "measuredFrom": "tailwind.config.js:10" },
+    "pink.light": { "value": "#ffaefe", "measuredFrom": "tailwind.config.js:10" },
+    "ink": { "value": "#232323", "measuredFrom": "tailwind.config.js:11" },
+    "ink.dark": { "value": "#444444", "measuredFrom": "tailwind.config.js:11" },
+    "ink.darker": { "value": "#222222", "measuredFrom": "tailwind.config.js:11" },
+    "ink.darkest": { "value": "#111111", "measuredFrom": "tailwind.config.js:11" },
+    "ink.neutral": { "value": "#666666", "measuredFrom": "tailwind.config.js:11" },
+    "oat": { "value": "#c3c2b2", "measuredFrom": "tailwind.config.js:12" },
+    "oat.dark": { "value": "#e2e1d3", "measuredFrom": "tailwind.config.js:12" },
+    "oat.darkest": { "value": "#c3c2b2", "measuredFrom": "tailwind.config.js:12" },
+    "paper": { "value": "#f0efe3", "measuredFrom": "tailwind.config.js:13" },
+    "cream": { "value": "#fefdf5", "measuredFrom": "tailwind.config.js:16", "note": "Warmer/lighter tint than paper, measured on .layout48_component and .splide__slide (case-studies cards) on the live original — deliberately a distinct token, not an alias of paper." },
+    "focus": { "value": "#2d62ff", "measuredFrom": "tailwind.config.js:17" },
+    "success": { "value": "#cef5ca", "measuredFrom": "tailwind.config.js:18" },
+    "success.dark": { "value": "#114e0b", "measuredFrom": "tailwind.config.js:18" },
+    "warning": { "value": "#fcf8d8", "measuredFrom": "tailwind.config.js:19" },
+    "warning.dark": { "value": "#5e5515", "measuredFrom": "tailwind.config.js:19" },
+    "error": { "value": "#f8e4e4", "measuredFrom": "tailwind.config.js:20" },
+    "error.dark": { "value": "#3b0b0b", "measuredFrom": "tailwind.config.js:20" },
+    "grounds": {
+      "description": "Section-local background grounds used across the site that are NOT in the tailwind color ramp above (hand-picked per-section, verified against the JSX that declares them inline). Kept as a documented foundation sub-group rather than silently duplicating the nearest ramp color, so a generator can cite the real value instead of guessing which ramp token is 'close enough'.",
+      "about-hero": { "value": "#191919", "measuredFrom": "src/pages/AboutUs.jsx:45" },
+      "about-team": { "value": "#e6e5d8", "measuredFrom": "src/pages/AboutUs.jsx:266" },
+      "automations": { "value": "rgb(22,22,22)", "measuredFrom": "src/components/Automations.jsx:120" },
+      "blog-list": { "value": "#fefdf5", "measuredFrom": "src/pages/Blog.jsx:216", "note": "Same warm tint as the 'cream' token, declared section-locally in source rather than via the shared class." },
+      "use-case-grid": { "value": "#fefdf5", "measuredFrom": "src/components/UseCaseGrid.jsx:24" }
+    }
+  }
+}

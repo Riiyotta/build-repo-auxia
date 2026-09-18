@@ -1,0 +1,151 @@
+{
+  "$schema": "assets/asset-roles",
+  "version": "1.0.0",
+  "generatedAt": "2026-09-18",
+  "description": "Controlled vocabulary of asset ROLES for the Auxia design-repo — what job a media slot does, not a file catalog. Every role below cites the real files under /public/assets/ and the real src/ line(s) that consume them, measured directly against this repo's sibling source project. A generator picks or sources an asset FOR a role; it never invents a role. The five role ids below are exactly the five listed in tokens/llm/component-allowlist.json's assetRoles array — this file is that enum's documentation and evidence layer, not a separate list.",
+  "measuredFrom": "public/assets/ directory listing (../public/assets/, 34 files across fonts/icons/img/logos plus favicon.png); `grep -rn \"/assets/\" ../src/` and `grep -rn \"public/assets\" ../src/` (2026-09-18).",
+  "enumMirroredIn": [
+    "tokens/llm/component-allowlist.json → assetRoles (the closed 5-id list this file documents)",
+    "schema/pagespec.schema.json → the assetRole const on brands.marquee / demo.form logo fields",
+    "sections/brands.marquee.json, sections/demo.form.json → the assetRole-bearing content fields"
+  ],
+
+  "roles": {
+    "logo.self": {
+      "purpose": "Auxia's own product wordmark/icon — the site's real, owned brand mark, shown in the navbar and footer.",
+      "format": "svg",
+      "aspect": "square icon mark",
+      "realFiles": ["/assets/icons/logo.svg"],
+      "usedAt": [
+        "../src/components/Navbar.jsx:35 (`<img src=\"/assets/icons/logo.svg\" alt=\"Auxia\" .../>`)",
+        "../src/components/Footer.jsx:38"
+      ],
+      "count": 1,
+      "policyNote": "This is the ONE real, owned mark in the project. It is safe to reproduce because Auxia's own logo — unlike the third-party customer logos below — is not someone else's IP being cloned without license."
+    },
+    "logo.invented-wordmark": {
+      "purpose": "A geometric, deliberately-invented wordmark that stands in for one of the 9 real third-party customer logos the original reference site shows in its logo marquee, case-studies rail, and demo-form social-proof strip. Never a redraw or recreation of a real company's mark.",
+      "format": "svg",
+      "aspect": "5:1, matching the real slots' aspect exactly so marquee/grid rhythm is unaffected",
+      "realFiles": [
+        "/assets/logos/cascadia.svg", "/assets/logos/halcyon.svg", "/assets/logos/lumenline.svg",
+        "/assets/logos/meridian.svg", "/assets/logos/northwind.svg", "/assets/logos/orbital.svg",
+        "/assets/logos/quanta.svg", "/assets/logos/stratafold.svg", "/assets/logos/verdant.svg"
+      ],
+      "usedAt": [
+        "../src/components/Brands.jsx:33 (`/assets/logos/${b}.svg`, marquee rail)",
+        "../src/components/CaseStudies.jsx:89 (`/assets/logos/${c.logo}.svg`)",
+        "../src/pages/Demo.jsx:191 (`/assets/logos/${name}.svg`, social-proof strip)"
+      ],
+      "referencedBySlug": true,
+      "slugNote": "Contract fields carry the bare slug (e.g. 'northwind'), not a path — see sections/brands.marquee.json and sections/demo.form.json content.logos, both of which constrain assetRole to the literal const \"logo.invented-wordmark\".",
+      "count": 9,
+      "hardConstraint": "MANDATORY, carried forward from ../README.md's 'Third-party material is not included' section and ../extraction/measured-values.json's licensingDecisions.invented_logos: these 9 marks belong to their real owners and are never reproduced — neither copied nor redrawn as SVG paths — anywhere a generator uses this design-repo. A generator may invent NEW original wordmarks in this same style, but must never attempt to render, approximate, or imply a real named company's actual logo, wordmark, or trademark under this role."
+    },
+    "photo.own-team": {
+      "purpose": "Photography of Auxia's own team/offsite — real people who are the site's own subject, not stock or a customer's imagery.",
+      "format": "jpg / png",
+      "realFiles": ["/assets/img/about-team.png", "/assets/img/about-offsite.jpg"],
+      "usedAt": [
+        "../src/pages/AboutUs.jsx:307 (`<img src=\"/assets/img/about-team.png\" alt=\"The Auxia team\" .../>`)",
+        "../src/pages/AboutUs.jsx:152 (`<img src=\"/assets/img/about-offsite.jpg\" alt=\"The Auxia team at an offsite\" .../>`)"
+      ],
+      "count": 2
+    },
+    "photo.own-marketing": {
+      "purpose": "Auxia's own marketing/product photography and product-UI screenshots used across hero, process, stack and blog sections — landscape/lifestyle plates and real UI captures, not third-party stock or customer material.",
+      "format": "jpg / png / avif",
+      "realFiles": [
+        "/assets/img/star-gaze.jpg", "/assets/img/canyon.jpg", "/assets/img/journey-builder.jpg",
+        "/assets/img/spot-weak-campaigns.jpg", "/assets/img/spot-weak-campaigns.avif",
+        "/assets/img/playbook-refresh.jpg", "/assets/img/slack-ui.jpg", "/assets/img/radius-shadow.avif",
+        "/assets/img/stack-v3-black.avif", "/assets/img/stack-v3-black-1600.avif",
+        "/assets/img/dc-flightcard.png", "/assets/img/dc-scale.png",
+        "/assets/img/as-integrate.png", "/assets/img/as-playbooks.png", "/assets/img/as-collab.png",
+        "/assets/img/blog-agent-studio.png", "/assets/img/blog-cmo-guide.png", "/assets/img/blog-10x-marketer.png",
+        "/assets/img/blog-100-billion.jpg", "/assets/img/blog-integrating-agents.avif",
+        "/assets/img/blog-agents-workflows.avif", "/assets/img/blog-stack-consolidation.avif",
+        "/assets/img/auxia-og.jpg", "/assets/favicon.png"
+      ],
+      "usedAt": [
+        "../src/components/Hero.jsx:44-46 (rotating hero plates)",
+        "../src/components/Hero.jsx:143 (spinner)",
+        "../src/components/Process.jsx:125,133,142-143,152,160 (per-step plates)",
+        "../src/components/Stack.jsx:145,148 (architecture diagram photo)",
+        "../src/components/DecisionHero.jsx:202",
+        "../src/pages/AgentStudio.jsx:23,36,62 (as-integrate/as-playbooks/as-collab)",
+        "../src/pages/Decisioning.jsx:46 (dc-scale.png)",
+        "../src/pages/Blog.jsx:44-100 (7 post thumbnails, all captioned 'Auxia's own imagery, downloaded to /assets/img/' at Blog.jsx:33)",
+        "../index.html:5 (favicon), :11 (og:image)"
+      ],
+      "count": 24
+    },
+    "diagram.generated-ui": {
+      "purpose": "Generated/vector line-art diagrams and icon-style illustrations — process-flow and decisioning schematics, plus small checkmark/laptop/message/person icons — that are drawn abstractions rather than photography.",
+      "format": "svg",
+      "realFiles": [
+        "/assets/img/as-execute.svg", "/assets/img/as-control.svg", "/assets/img/as-context.svg",
+        "/assets/img/dc-ingest.svg", "/assets/img/dc-goals.svg", "/assets/img/dc-decisioning.svg",
+        "/assets/img/dc-measure.svg", "/assets/img/dc-compound.svg",
+        "/assets/icons/checkmark.svg", "/assets/icons/laptop-blue.svg", "/assets/icons/laptop-dark.svg",
+        "/assets/icons/message-blue.svg", "/assets/icons/person.svg"
+      ],
+      "usedAt": [
+        "../src/pages/AgentStudio.jsx:49,75,88",
+        "../src/pages/Decisioning.jsx:22,35,59,72,85",
+        "../src/components/Trusted.jsx:44, ../src/components/Stack.jsx:82 (checkmark)",
+        "../src/pages/Demo.jsx:164,215 (checkmark)"
+      ],
+      "count": 13
+    }
+  },
+
+  "fontPolicy": {
+    "description": "Both site typefaces are SIL Open Font License and self-hosted, carried forward as a hard constraint from ../README.md's 'Fonts' section and ../extraction/measured-values.json's licensingDecisions.self_hosted_fonts — never replaced with a font loaded from a third-party CDN (Google Fonts, Adobe Fonts, etc.) by anything a generator produces from this design-repo.",
+    "faces": [
+      {
+        "role": "sans (substitute)",
+        "family": "Archivo (variable)",
+        "license": "SIL Open Font License",
+        "realFile": "/assets/fonts/Archivo-var.woff2",
+        "usedAt": "../src/index.css:12",
+        "note": "Chosen by measurement (3.69% mean / 5.21% worst-case advance-width deviation against the reference's real commercial grotesque, tightest worst-case of 10 candidates compared) — a substitute, not the original commercial face, which is never bundled."
+      },
+      {
+        "role": "mono (exact match)",
+        "family": "IBM Plex Mono",
+        "license": "SIL Open Font License",
+        "realFiles": ["/assets/fonts/IBMPlexMono-400.woff2", "/assets/fonts/IBMPlexMono-500.woff2"],
+        "usedAt": "../src/index.css:19,26"
+      }
+    ],
+    "hardConstraint": "All fonts referenced by generated output must resolve to files self-hosted under public/assets/fonts/ (or an equivalent self-hosted path in a consuming project) — never an external font-hosting request."
+  },
+
+  "legalCopyPolicy": {
+    "description": "Carried forward from ../README.md's 'Third-party material is not included' section and ../extraction/measured-values.json's licensingDecisions.placeholder_legal: /privacy-policy and /terms use representative PLACEHOLDER prose, not anyone's real legal text, and both pages render a REQUIRED, visible in-page notice saying so — verified as an actually-rendered banner, not merely a code comment.",
+    "verifiedNoticeLocations": [
+      "../src/pages/PrivacyPolicy.jsx:27 (comment: 'BODY PROSE IS PLACEHOLDER — see the banner') and its rendered role=\"note\" banner",
+      "../src/pages/Terms.jsx:20 (comment: 'BODY PROSE IS PLACEHOLDER — see the banner') and its rendered role=\"note\" banner"
+    ],
+    "hardConstraint": "Any generated page bound to the 'legal' template (sections/legal.prose.json) MUST render an equivalent visible in-page placeholder notice alongside placeholder body prose — a generator must never present invented legal text as real legal text with no disclosure, and must never source real third-party legal copy to fill this slot."
+  },
+
+  "noOutboundLinksPolicy": {
+    "description": "Carried forward from ../README.md and ../extraction/measured-values.json's licensingDecisions.no_outbound_links: every link that would point at the real reference site's live properties resolves to '#' instead, and the demo form is local React state only with zero network requests.",
+    "measuredFrom": "../src/components/Navbar.jsx:4-10; ../src/components/Footer.jsx:10-19; ../src/pages/Demo.jsx:125-135",
+    "independentVerification": "grep -rniE 'https?://|fetch\\(|XMLHttpRequest|axios' across this design-repo's sibling src/ finds zero real external-request call sites — only XML namespace URIs (xmlns=\"http://www.w3.org/2000/svg\") inside inline SVG markup, which are not network requests.",
+    "hardConstraint": "Any AI-generated content produced from this design-repo must not introduce a real outbound hyperlink or a real network request (fetch/XHR/form POST to a live endpoint). Interactive controls that would normally deep-link externally must resolve to '#' or an equivalent local no-op, exactly as the measured source does."
+  },
+
+  "unreferencedOnDisk": {
+    "note": "Files under public/assets/ with no confirmed src/ reference found during this pass.",
+    "files": [],
+    "count": 0
+  },
+
+  "knownGaps": [
+    "There is no alt-text registry as a separate contract layer. Decorative images in src/ use alt=\"\" (e.g. Navbar/Footer/Trusted logo marks); images that convey real content carry real alt text inline at the call site (e.g. AboutUs.jsx:152,307) rather than in a shared data file.",
+    "This project has exactly one theme (tokens/themes/light.json, confirmed by grep — no dark: variants, no ThemeProvider). No role has a dark-mode counterpart because there is no dark mode."
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://design-repo.local/auxia/pagespec.schema.json",
+  "title": "Auxia PageSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pageId", "route", "template", "nodes"],
+  "properties": {
+    "pageId": { "type": "string", "minLength": 1 },
+    "route": { "type": "string", "minLength": 1 },
+    "template": {
+      "type": "string",
+      "enum": ["home", "product", "about", "blog-index", "demo-form", "legal", "not-found"]
+    },
+    "retrievalEligible": { "type": "boolean" },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/node" }
+    }
+  },
+  "definitions": {
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reducedMotionFallback"],
+      "properties": {
+        "pattern": { "type": "string" },
+        "reducedMotionFallback": { "type": "string", "minLength": 1 },
+        "note": { "type": "string" }
+      }
+    },
+    "nodeCommon": {
+      "type": "object",
+      "required": ["section", "required", "repeatable", "motion", "content"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "repeatable": { "type": "boolean" },
+        "variantCondition": { "type": "string" },
+        "motion": { "$ref": "#/definitions/motion" }
+      }
+    },
+    "node": {
+      "oneOf": [
+        { "$ref": "#/definitions/nodes/shell.banner" },
+        { "$ref": "#/definitions/nodes/shell.navbar" },
+        { "$ref": "#/definitions/nodes/shell.footer" },
+        { "$ref": "#/definitions/nodes/hero.marketing" },
+        { "$ref": "#/definitions/nodes/hero.product.agent-studio" },
+        { "$ref": "#/definitions/nodes/hero.product.decisioning" },
+        { "$ref": "#/definitions/nodes/hero.about" },
+        { "$ref": "#/definitions/nodes/about.market" },
+        { "$ref": "#/definitions/nodes/about.values" },
+        { "$ref": "#/definitions/nodes/about.team" },
+        { "$ref": "#/definitions/nodes/brands.marquee" },
+        { "$ref": "#/definitions/nodes/marketing.split" },
+        { "$ref": "#/definitions/nodes/stack.panels" },
+        { "$ref": "#/definitions/nodes/process.flowchart" },
+        { "$ref": "#/definitions/nodes/automations.field" },
+        { "$ref": "#/definitions/nodes/case-studies.rail" },
+        { "$ref": "#/definitions/nodes/trusted.grid" },
+        { "$ref": "#/definitions/nodes/cta.band" },
+        { "$ref": "#/definitions/nodes/features.rows" },
+        { "$ref": "#/definitions/nodes/use-case.grid" },
+        { "$ref": "#/definitions/nodes/prefooter.crosssell" },
+        { "$ref": "#/definitions/nodes/blog.featured" },
+        { "$ref": "#/definitions/nodes/blog.list" },
+        { "$ref": "#/definitions/nodes/demo.form" },
+        { "$ref": "#/definitions/nodes/legal.prose" },
+        { "$ref": "#/definitions/nodes/utility.not-found" }
+      ]
+    },
+    "logoRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetRole", "slug"],
+      "properties": {
+        "assetRole": { "const": "logo.invented-wordmark" },
+        "slug": { "type": "string" }
+      }
+    },
+    "nodes": {
+      "shell.banner": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "shell.banner" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["text", "href"],
+            "properties": { "text": { "type": "string" }, "href": { "type": "string" } }
+          }
+        }
+      },
+      "shell.navbar": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "shell.navbar" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["logoAssetRole", "links", "products"],
+            "properties": {
+              "logoAssetRole": { "const": "logo.self" },
+              "links": { "type": "array", "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["label", "href"], "properties": { "label": { "type": "string" }, "href": { "type": "string" }, "internal": { "type": "boolean" }, "disabled": { "type": "boolean" } } } },
+              "products": { "type": "array", "maxItems": 2, "items": { "type": "object", "additionalProperties": false, "required": ["label", "href"], "properties": { "label": { "type": "string" }, "href": { "type": "string" }, "internal": { "type": "boolean" } } } }
+            }
+          }
+        }
+      },
+      "shell.footer": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "shell.footer" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["logoAssetRole", "columns"],
+            "properties": {
+              "logoAssetRole": { "const": "logo.self" },
+              "columns": { "type": "array", "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["heading", "links"], "properties": { "heading": { "type": "string" }, "links": { "type": "array", "maxItems": 2, "items": { "type": "object", "additionalProperties": false, "required": ["label", "href"], "properties": { "label": { "type": "string" }, "href": { "type": "string" }, "internal": { "type": "boolean" } } } } } } }
+            }
+          }
+        }
+      },
+      "hero.marketing": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "hero.marketing" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["heading", "workflowSteps", "audiences"],
+            "properties": {
+              "heading": { "type": "string" },
+              "workflowSteps": { "type": "array", "maxItems": 6, "items": { "type": "string" } },
+              "audiences": { "type": "array", "maxItems": 3, "items": { "type": "array", "maxItems": 3, "items": { "type": "string" } } },
+              "visualAssetRole": { "const": "diagram.generated-ui" }
+            }
+          }
+        }
+      },
+      "hero.product.agent-studio": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "hero.product" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["variant", "heading", "body", "ctaLabel", "prompts"],
+            "properties": {
+              "variant": { "const": "agent-studio" },
+              "heading": { "type": "string" }, "body": { "type": "string" }, "ctaLabel": { "type": "string" },
+              "prompts": { "type": "array", "maxItems": 8, "items": { "type": "string" } },
+              "visualAssetRole": { "const": "diagram.generated-ui" }
+            }
+          }
+        }
+      },
+      "hero.product.decisioning": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "hero.product" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["variant", "heading", "body", "ctaLabel", "users", "offers"],
+            "properties": {
+              "variant": { "const": "decisioning" },
+              "heading": { "type": "string" }, "body": { "type": "string" }, "ctaLabel": { "type": "string" },
+              "users": { "type": "array", "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["name", "tags"], "properties": { "name": { "type": "string" }, "tags": { "type": "array", "maxItems": 2, "items": { "type": "string" } } } } },
+              "offers": { "type": "array", "maxItems": 8, "items": { "type": "array", "maxItems": 2, "items": { "type": "string" } } }
+            }
+          }
+        }
+      },
+      "hero.about": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "hero.about" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["tagLabel", "heading", "statsLabel", "stats"],
+            "properties": {
+              "tagLabel": { "type": "string" }, "heading": { "type": "string" }, "statsLabel": { "type": "string" },
+              "stats": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["value", "label"], "properties": { "value": { "type": "string" }, "label": { "type": "string" } } } }
+            }
+          }
+        }
+      },
+      "about.market": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "about.market" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["headingLead", "headingMain", "paragraphs", "photoAssetRole"],
+            "properties": {
+              "headingLead": { "type": "string" }, "headingMain": { "type": "string" },
+              "paragraphs": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "type": "string" } },
+              "photoAssetRole": { "const": "photo.own-team" }
+            }
+          }
+        }
+      },
+      "about.values": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "about.values" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["tagLabel", "heading", "values"],
+            "properties": {
+              "tagLabel": { "type": "string" }, "heading": { "type": "string" },
+              "values": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "type": "object", "additionalProperties": false, "required": ["title", "body"], "properties": { "title": { "type": "string" }, "body": { "type": "string" } } } }
+            }
+          }
+        }
+      },
+      "about.team": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "about.team" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["tagLabel", "heading", "body", "ctaLabel", "photoAssetRole"],
+            "properties": {
+              "tagLabel": { "type": "string" }, "heading": { "type": "string" }, "body": { "type": "string" }, "ctaLabel": { "type": "string" },
+              "photoAssetRole": { "const": "photo.own-team" }
+            }
+          }
+        }
+      },
+      "brands.marquee": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "brands.marquee" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["heading", "logos"],
+            "properties": { "heading": { "type": "string" }, "logos": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/logoRef" } } }
+          }
+        }
+      },
+      "marketing.split": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "marketing.split" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["headingLead", "headingMuted", "body"],
+            "properties": {
+              "headingLead": { "type": "string" }, "headingMuted": { "type": "string" },
+              "body": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "type": "string" } },
+              "messCanvasAssetRole": { "const": "diagram.generated-ui" }, "cleanCanvasAssetRole": { "const": "diagram.generated-ui" }
+            }
+          }
+        }
+      },
+      "stack.panels": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "stack.panels" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["layers"],
+            "properties": { "layers": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["title", "body"], "properties": { "title": { "type": "string" }, "body": { "type": "string" } } } } }
+          }
+        }
+      },
+      "process.flowchart": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "process.flowchart" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["heading", "lede", "steps"],
+            "properties": {
+              "heading": { "type": "string" }, "lede": { "type": "string" },
+              "steps": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "type": "object", "additionalProperties": false, "properties": { "title": { "type": "string" }, "body": { "type": "string" }, "tag": { "type": ["string", "null"] }, "imageAssetRole": { "const": "diagram.generated-ui" } } } }
+            }
+          }
+        }
+      },
+      "automations.field": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "automations.field" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["counterLabel", "subheading", "automationNames"],
+            "properties": { "counterLabel": { "type": "string" }, "subheading": { "type": "string" }, "automationNames": { "type": "array", "minItems": 1, "maxItems": 36, "items": { "type": "string" } } }
+          }
+        }
+      },
+      "case-studies.rail": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "case-studies.rail" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["heading", "cases"],
+            "properties": {
+              "heading": { "type": "string" },
+              "cases": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "type": "object", "additionalProperties": false, "required": ["name", "logoAssetRole", "body", "stat", "statLabel"], "properties": { "name": { "type": "string" }, "logoAssetRole": { "const": "logo.invented-wordmark" }, "body": { "type": "string" }, "stat": { "type": "string" }, "statLabel": { "type": "string" } } } }
+            }
+          }
+        }
+      },
+      "trusted.grid": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "trusted.grid" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["headingLead", "headingMain", "body", "pillars"],
+            "properties": {
+              "headingLead": { "type": "string" }, "headingMain": { "type": "string" }, "body": { "type": "string" },
+              "pillars": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["title", "body"], "properties": { "title": { "type": "string" }, "body": { "type": "string" } } } }
+            }
+          }
+        }
+      },
+      "cta.band": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "cta.band" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["heading", "primaryCta"],
+            "properties": { "heading": { "type": "string" }, "primaryCta": { "type": "string" }, "secondaryCta": { "type": "string" } }
+          }
+        }
+      },
+      "features.rows": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "features.rows" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["items", "bottom"],
+            "properties": {
+              "items": { "type": "array", "minItems": 4, "maxItems": 6, "items": { "type": "object", "additionalProperties": false, "required": ["eyebrow", "title", "points"], "properties": { "eyebrow": { "type": "string" }, "title": { "type": "string" }, "imageAssetRole": { "const": "diagram.generated-ui" }, "points": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["title", "body"], "properties": { "title": { "type": "string" }, "body": { "type": "string" } } } } } } },
+              "bottom": { "type": "object", "additionalProperties": false, "required": ["heading", "body", "cards"], "properties": { "heading": { "type": "string" }, "body": { "type": "string" }, "cards": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "object", "additionalProperties": false, "required": ["label"], "properties": { "label": { "type": "string" }, "icon": { "type": "string" } } } } } }
+            }
+          }
+        }
+      },
+      "use-case.grid": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "use-case.grid" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["eyebrow", "heading", "cols", "cards"],
+            "properties": {
+              "eyebrow": { "type": "string" }, "heading": { "type": "string" }, "cols": { "type": "integer", "enum": [3, 4] },
+              "cards": { "type": "array", "minItems": 4, "maxItems": 6, "items": { "type": "object", "additionalProperties": false, "required": ["icon", "title", "body"], "properties": { "icon": { "type": "string" }, "title": { "type": "string" }, "body": { "type": "string" } } } }
+            }
+          }
+        }
+      },
+      "prefooter.crosssell": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "prefooter.crosssell" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["label", "heading", "body", "ctaLabel", "to"],
+            "properties": { "label": { "type": "string" }, "heading": { "type": "string" }, "body": { "type": "string" }, "ctaLabel": { "type": "string" }, "to": { "type": "string" } }
+          }
+        }
+      },
+      "blog.featured": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "blog.featured" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["post"],
+            "properties": { "post": { "type": "object", "additionalProperties": false, "required": ["category", "title", "author", "date", "readTime", "imageAssetRole", "href"], "properties": { "category": { "type": "string" }, "title": { "type": "string" }, "author": { "type": "string" }, "date": { "type": "string" }, "readTime": { "type": "string" }, "imageAssetRole": { "const": "photo.own-marketing" }, "href": { "type": "string" } } } }
+          }
+        }
+      },
+      "blog.list": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "blog.list" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["categories", "posts", "paginationLabel"],
+            "properties": {
+              "categories": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+              "posts": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": false, "required": ["category", "title", "author", "date", "readTime", "imageAssetRole", "href"], "properties": { "category": { "type": "string" }, "title": { "type": "string" }, "author": { "type": "string" }, "date": { "type": "string" }, "readTime": { "type": "string" }, "imageAssetRole": { "const": "photo.own-marketing" }, "href": { "type": "string" } } } },
+              "paginationLabel": { "type": "string" }
+            }
+          }
+        }
+      },
+      "demo.form": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "demo.form" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["heading", "bullets", "fields", "submitLabel"],
+            "properties": {
+              "heading": { "type": "string" }, "tagLabel": { "type": "string" },
+              "bullets": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "type": "object", "additionalProperties": false, "required": ["title"], "properties": { "title": { "type": "string" }, "body": { "type": "string" } } } },
+              "logosLabel": { "type": "string" },
+              "logos": { "type": "array", "items": { "$ref": "#/definitions/logoRef" } },
+              "fields": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": false, "required": ["name", "label", "type"], "properties": { "name": { "type": "string" }, "label": { "type": "string" }, "type": { "type": "string", "enum": ["text", "email", "tel"] }, "required": { "type": "boolean" } } } },
+              "submitLabel": { "type": "string" }
+            }
+          }
+        }
+      },
+      "legal.prose": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "legal.prose" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["docTitle", "toc", "placeholderNotice"],
+            "properties": {
+              "docTitle": { "type": "string" },
+              "toc": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": false, "required": ["id", "label"], "properties": { "id": { "type": "string" }, "label": { "type": "string" } } } },
+              "placeholderNotice": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      },
+      "utility.not-found": {
+        "allOf": [{ "$ref": "#/definitions/nodeCommon" }],
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "section": { "const": "utility.not-found" }, "required": true, "repeatable": true, "variantCondition": true, "motion": true,
+          "content": {
+            "type": "object", "additionalProperties": false,
+            "required": ["heading", "body", "ctaLabel"],
+            "properties": { "heading": { "type": "string" }, "body": { "type": "string" }, "ctaLabel": { "type": "string" } }
+          }
+        }
+      }
+    }
+  }
+}

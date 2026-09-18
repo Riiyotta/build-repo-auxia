@@ -1,0 +1,41 @@
+{
+  "id": "blog.list",
+  "type": "section",
+  "purpose": "Filterable/searchable card grid of blog posts with pagination control.",
+  "measuredFrom": "src/pages/Blog.jsx:216-357",
+  "usedOnTemplates": ["blog-index"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "categories": { "type": "array", "minItems": 1, "items": { "type": "string", "maxWords": 2 } },
+      "posts": {
+        "type": "array", "minItems": 1,
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": { "type": "string", "maxWords": 2 },
+            "title": { "type": "string", "maxWords": 18 },
+            "author": { "type": "string", "maxWords": 3 },
+            "date": { "type": "string", "maxWords": 3 },
+            "readTime": { "type": "string", "maxWords": 3 },
+            "imageAssetRole": { "const": "photo.own-marketing" },
+            "href": { "type": "string" }
+          },
+          "required": ["category", "title", "author", "date", "readTime", "imageAssetRole", "href"],
+          "additionalProperties": false
+        }
+      },
+      "paginationLabel": { "type": "string", "maxWords": 3 }
+    },
+    "required": ["categories", "posts", "paginationLabel"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "responsive": {
+    "desktop": "3-column grid, gap 40px 16px",
+    "tablet": { "breakpoint": "991px", "change": "2 columns, gap 32px 16px" },
+    "mobile": { "breakpoint": "767px", "change": "1 column, gap 48px 16px" }
+  },
+  "constraintsNote": "Filtering/search is local-state only (no network request) — clearing motion's pre-reveal hidden state on the freshly-filtered set is a real, documented behavioral fix (src/pages/Blog.jsx:143-159), not decorative.",
+  "motion": { "pattern": "fd-fade-children on cards, cleared/re-shown on filter change rather than re-triggering ScrollTrigger", "reducedMotionFallback": "cards always at rest opacity" }
+}

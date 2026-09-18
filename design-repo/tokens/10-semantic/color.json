@@ -1,0 +1,22 @@
+{
+  "description": "Semantic roles built from 00-foundation/color.json. An LLM/generator should always reference these, never a raw hex value.",
+  "roles": {
+    "surface.page": { "references": "foundation.color.paper", "value": "#f0efe3" },
+    "surface.brand": { "references": "foundation.color.blue", "value": "#0b4fff" },
+    "surface.dark": { "references": "foundation.color.ink", "value": "#232323" },
+    "surface.dark-alt": { "references": "foundation.color.grounds.about-hero", "value": "#191919", "note": "Used for about-hero and other near-black grounds distinct from the main ink token." },
+    "surface.card-warm": { "references": "foundation.color.cream", "value": "#fefdf5" },
+    "surface.muted": { "references": "foundation.color.oat.dark", "value": "#e2e1d3" },
+    "text.primary": { "references": "foundation.color.ink", "value": "#232323" },
+    "text.inverse": { "references": "foundation.color.paper", "value": "#f0efe3" },
+    "text.muted": { "references": "foundation.color.ink.neutral", "value": "#666666", "note": "Most muted body text on paper grounds is authored as ink/70 or paper/70 opacity rather than this literal token — both are valid per component contracts." },
+    "text.accent": { "references": "foundation.color.blue", "value": "#0b4fff" },
+    "border.default": { "references": "foundation.color.oat.dark", "value": "#e2e1d3" },
+    "border.on-dark": { "value": "rgba(255,255,255,.1)", "usage": "prefooter border, agent-hero marquee hairline" },
+    "border.on-brand": { "value": "rgba(255,255,255,.3)", "usage": "decisioning agent-hero_offers card border" },
+    "state.success": { "references": "foundation.color.success", "value": "#cef5ca" },
+    "state.warning": { "references": "foundation.color.warning", "value": "#fcf8d8" },
+    "state.error": { "references": "foundation.color.error", "value": "#f8e4e4" },
+    "state.focus": { "references": "foundation.color.focus", "value": "#2d62ff" }
+  }
+}

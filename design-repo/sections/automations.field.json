@@ -1,0 +1,20 @@
+{
+  "id": "automations.field",
+  "type": "section",
+  "purpose": "Scale statement — a live-decision counter over a dense, static field of automation-name rows (NOT a marquee).",
+  "measuredFrom": "src/components/Automations.jsx",
+  "usedOnTemplates": ["home"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "counterLabel": { "type": "string", "maxWords": 6 },
+      "subheading": { "type": "string", "maxWords": 10 },
+      "automationNames": { "type": "array", "minItems": 1, "maxItems": 36, "items": { "type": "string", "maxWords": 4 } }
+    },
+    "required": ["counterLabel", "subheading", "automationNames"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "structuralNote": "A static field of 36 rows (24+12, two .automations_wrapper groups) behind the copy, revealed by scroll motion only — not an auto-scrolling marquee. Confirmed via src/components/Automations.jsx:1-24 doc comment." },
+  "background": { "ground": "rgb(22,22,22)" },
+  "motion": { "pattern": "pinned scroll-scrub reveal of the behind-field + numeric counter count-up", "reducedMotionFallback": "static field at rest opacity, counter renders final value with no count-up animation" }
+}

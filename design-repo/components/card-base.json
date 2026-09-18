@@ -1,0 +1,12 @@
+{
+  "id": "card-base",
+  "type": "component",
+  "description": "Generic bordered/filled panel composing icon+heading+body, reused as case-study cards, use-case cards, feature assurance cards, stack panels.",
+  "composesPrimitives": ["icon", "badge"],
+  "measuredFrom": "src/components/UseCaseGrid.jsx:36-49; src/components/FeaturesBottom.jsx:31-44",
+  "variants": {
+    "outlined": { "background": "surface.page", "border": "border.default", "radius": "card-lg" },
+    "filled-brand": { "background": "surface.brand", "text": "text.inverse", "radius": "card-lg" },
+    "warm": { "background": "surface.card-warm", "radius": "card-lg" }
+  }
+}

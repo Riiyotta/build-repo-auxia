@@ -1,0 +1,12 @@
+{
+  "id": "link",
+  "type": "primitive",
+  "description": "Inline/nav text link. Internal links use react-router; every link to a real external reference-site destination is deliberately replaced with '#' (see extraction/measured-values.json licensing notes).",
+  "measuredFrom": "src/components/Navbar.jsx:46-48; src/components/Footer.jsx:60-68",
+  "props": {
+    "label": { "type": "string", "maxWords": 4 },
+    "href": { "type": "string" },
+    "internal": { "type": "boolean", "description": "true = react-router Link to a real in-repo route; false/absent = resolves to '#'." },
+    "disabled": { "type": "boolean", "default": false }
+  }
+}

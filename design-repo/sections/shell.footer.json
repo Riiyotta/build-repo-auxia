@@ -1,0 +1,31 @@
+{
+  "id": "shell.footer",
+  "type": "section",
+  "purpose": "Closing site chrome: oversized wordmark, link columns, legal.",
+  "measuredFrom": "src/components/Footer.jsx",
+  "renderedOnAllRoutes": true,
+  "content": {
+    "type": "object",
+    "properties": {
+      "logoAssetRole": { "type": "string", "const": "logo.self" },
+      "columns": {
+        "type": "array",
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "properties": {
+            "heading": { "type": "string", "maxWords": 2 },
+            "links": { "type": "array", "maxItems": 2, "items": { "type": "object", "properties": { "label": { "type": "string", "maxWords": 3 }, "href": { "type": "string" }, "internal": { "type": "boolean" } }, "required": ["label", "href"], "additionalProperties": false } }
+          },
+          "required": ["heading", "links"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": ["logoAssetRole", "columns"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeLast": true },
+  "motion": { "pattern": "none", "reducedMotionFallback": "none" },
+  "licensingNote": "All outbound links (LinkedIn, platform/docs apps, mailto) are deliberately replaced with '#' — see extraction/measured-values.json. Never wire a generated footer link to a real external auxia.io/linkedin.com property."
+}

@@ -1,0 +1,9 @@
+{
+  "description": "Border-radius values actually observed in source, ranked by usage frequency across sections.json evidence gathered during this build.",
+  "radii": {
+    "btn": { "value": ".75rem", "measuredFrom": "tailwind.config.js:36" },
+    "card-sm": { "value": "1rem", "note": "rounded-2xl (Tailwind default 1rem), used on blog cards / feature images.", "measuredFrom": "src/pages/Blog.jsx:195,313" },
+    "card-lg": { "value": "1.5rem", "note": "rounded-3xl (Tailwind default 1.5rem), used on Stack panels, use-case cards, prefooter, demo form.", "measuredFrom": "src/components/Stack.jsx; src/components/UseCaseGrid.jsx:37; src/pages/Demo.jsx:204" },
+    "pill": { "value": "9999px", "note": "rounded-full, used for tag pills / marquee badges.", "measuredFrom": "src/components/DecisionHero.jsx:36" }
+  }
+}

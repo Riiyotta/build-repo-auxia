@@ -26,3 +26,6 @@ dist-ssr
 # Playwright scratch output
 test-results
 playwright-report
+
+# Design-repo delivery zip (regenerated fresh, never committed alongside the live folder)
+design-repo.zip

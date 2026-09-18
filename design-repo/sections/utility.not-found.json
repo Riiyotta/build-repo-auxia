@@ -1,0 +1,19 @@
+{
+  "id": "utility.not-found",
+  "type": "section",
+  "purpose": "404 fallback for any unmatched route.",
+  "measuredFrom": "src/App.jsx#NotFound (defined inline in App.jsx around line 21, NOT a separate src/pages/NotFound.jsx file — there is no such file in this project).",
+  "usedOnTemplates": ["not-found"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "heading": { "type": "string", "maxWords": 6 },
+      "body": { "type": "string", "maxWords": 20 },
+      "ctaLabel": { "type": "string", "maxWords": 4 }
+    },
+    "required": ["heading", "body", "ctaLabel"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true },
+  "motion": { "pattern": "none", "reducedMotionFallback": "none" }
+}

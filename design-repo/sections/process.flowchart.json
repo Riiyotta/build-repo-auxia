@@ -1,0 +1,23 @@
+{
+  "id": "process.flowchart",
+  "type": "section",
+  "purpose": "6-step agent workflow rendered as a literal vertical flowchart with SVG connector paths and tag pills between steps.",
+  "measuredFrom": "src/components/Process.jsx",
+  "usedOnTemplates": ["home"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "heading": { "type": "string", "maxWords": 10 },
+      "lede": { "type": "string", "maxWords": 40 },
+      "steps": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "type": "object", "properties": { "title": { "type": "string", "maxWords": 8 }, "body": { "type": "string", "maxWords": 45 }, "tag": { "type": ["string", "null"], "maxWords": 4 }, "imageAssetRole": { "const": "diagram.generated-ui" } }, "additionalProperties": false } }
+    },
+    "required": ["heading", "lede", "steps"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "exactCount": 6, "note": "6 = 1 opening prompt wrap (.process_step1, no title/body, prompt+tag only) + 5 real STAGES entries (title+body+tag/null). Verified against src/components/Process.jsx:119-161 — the 5th stage's tag/connector are both null (it is the closing stage)." },
+  "responsive": {
+    "desktop": "940x369 inline SVG connectors, mirrored ltr/rtl variants, -6px bottom margin so paths butt together.",
+    "mobile": { "breakpoint": "<=991px", "change": "connector geometry swaps to a 296x320 zig-zag path (or 149x320 half variant for the closing step) — a distinct path set, not a scaled version of the desktop path." }
+  },
+  "motion": { "pattern": "scroll-linked connector draw-in per step, tag pill fade-in", "reducedMotionFallback": "static full connectors, tags at rest opacity" }
+}

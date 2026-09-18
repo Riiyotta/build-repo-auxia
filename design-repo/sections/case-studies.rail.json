@@ -1,0 +1,33 @@
+{
+  "id": "case-studies.rail",
+  "type": "section",
+  "purpose": "Customer proof — a full-bleed horizontal rail of 8 case-study cards (real Splide carousel on the reference, reproduced as a scrollable rail here).",
+  "measuredFrom": "src/components/CaseStudies.jsx",
+  "usedOnTemplates": ["home", "product"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "heading": { "type": "string", "maxWords": 10 },
+      "cases": {
+        "type": "array", "minItems": 1, "maxItems": 8,
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string", "maxWords": 3 },
+            "logoAssetRole": { "const": "logo.invented-wordmark" },
+            "body": { "type": "string", "maxWords": 45 },
+            "stat": { "type": "string", "maxWords": 3 },
+            "statLabel": { "type": "string", "maxWords": 6 }
+          },
+          "required": ["name", "logoAssetRole", "body", "stat", "statLabel"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": ["heading", "cases"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "notRecommendedWith": [], "exceptionRoutes": "Present on / (home) and /agent-studio only. NOT present on /decisioning — verified 0 .section_case-studies on that route (src/pages/Decisioning.jsx doc comment)." },
+  "motion": { "pattern": "horizontal drag/scroll rail, cards fade in on scroll into view", "reducedMotionFallback": "static rail, cards at rest opacity, scroll-snap only (no reveal animation)" },
+  "licensingNote": "Company names/stats are Auxia's own real published customer claims; logos are the same invented-wordmark set as brands.marquee — never a real third-party mark."
+}

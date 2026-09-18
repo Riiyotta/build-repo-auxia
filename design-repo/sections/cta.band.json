@@ -1,0 +1,20 @@
+{
+  "id": "cta.band",
+  "type": "section",
+  "purpose": "Closing full-width conversion band with a live dot-field canvas backdrop.",
+  "measuredFrom": "src/components/CTA.jsx",
+  "usedOnTemplates": ["home", "blog", "product"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "heading": { "type": "string", "maxWords": 12 },
+      "primaryCta": { "type": "string", "maxWords": 3 },
+      "secondaryCta": { "type": "string", "maxWords": 5 }
+    },
+    "required": ["heading", "primaryCta"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustPrecedeFooter": true, "maxPerPage": 1, "exceptionRoutes": "Present on / and /blog and /agent-studio; NOT present on /decisioning (prefooter closes that page instead — verified in Decisioning.jsx's own doc comment)." },
+  "background": { "ground": "surface.brand" },
+  "motion": { "pattern": "fd-h2 heading reveal; dot-field-canvas('cta-grid') static 42px-pitch field", "reducedMotionFallback": "static final state, dot field still renders (content, not decorative motion)" }
+}

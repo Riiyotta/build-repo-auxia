@@ -1,0 +1,24 @@
+{
+  "id": "demo.form",
+  "type": "section",
+  "purpose": "Demo-request lead form: copy rail plus a local-state-only form (no network request).",
+  "measuredFrom": "src/pages/Demo.jsx",
+  "usedOnTemplates": ["demo-form"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "heading": { "type": "string", "maxWords": 8 },
+      "tagLabel": { "type": "string", "maxWords": 6 },
+      "bullets": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "type": "object", "properties": { "title": { "type": "string", "maxWords": 5 }, "body": { "type": "string", "maxWords": 20 } }, "required": ["title"], "additionalProperties": false } },
+      "logosLabel": { "type": "string", "maxWords": 6 },
+      "logos": { "type": "array", "minItems": 1, "items": { "type": "object", "properties": { "assetRole": { "const": "logo.invented-wordmark" }, "slug": { "type": "string" } }, "required": ["assetRole", "slug"], "additionalProperties": false } },
+      "fields": { "type": "array", "minItems": 1, "items": { "type": "object", "properties": { "name": { "type": "string" }, "label": { "type": "string", "maxWords": 6 }, "type": { "type": "string", "enum": ["text", "email", "tel"] }, "required": { "type": "boolean" } }, "required": ["name", "label", "type"], "additionalProperties": false } },
+      "submitLabel": { "type": "string", "maxWords": 2 }
+    },
+    "required": ["heading", "bullets", "fields", "submitLabel"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "networkPolicy": "must-not-fabricate — the real reference posts to HubSpot and mounts a Cloudflare Turnstile widget; NEITHER is reproduced here. This form performs zero network requests: local React state only, local validation only, local success panel only. A generated instance of this section must preserve that constraint exactly.",
+  "motion": { "pattern": "fd-fade-children on bullets, fd-fade on form panel", "reducedMotionFallback": "static final state" }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "feature-connector-canvas",
+  "type": "component",
+  "description": "The rounded-corner connector line drawn between alternating feature rows on the product pages, reverse-engineered from real CanvasRenderingContext2D calls.",
+  "measuredFrom": "src/components/FeatureConnector.jsx:1-57",
+  "props": {
+    "variant": { "type": "enum", "values": ["ltr", "rtl", "close"] }
+  },
+  "geometry": {
+    "canvasSize": "1232x180 (2x DPR)",
+    "strokeWidth": 3,
+    "cornerRadius": 40,
+    "track": "#e2e1d3 (full length, drawn first)",
+    "progress": "#0b4fff (dashed draw-in over the track, drawn second)"
+  },
+  "motion": {
+    "pattern": "scroll-linked-dash-draw",
+    "reducedMotionFallback": "render the full progress line statically at 100%, no setLineDash animation"
+  }
+}

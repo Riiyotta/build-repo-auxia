@@ -1,0 +1,13 @@
+{
+  "id": "button",
+  "type": "primitive",
+  "description": "Atomic call-to-action control. Four real variants observed in source.",
+  "measuredFrom": "src/index.css (btn/btn-primary/btn-secondary/btn-tertiary/btn-white component classes); src/components/CTA.jsx:22-23",
+  "props": {
+    "variant": { "type": "enum", "values": ["primary", "secondary", "tertiary", "white"], "default": "primary" },
+    "label": { "type": "string", "maxWords": 5 },
+    "href": { "type": "string", "description": "Internal react-router path, or '#' for any link the source project deliberately does not wire to a live external destination." },
+    "icon": { "type": "enum", "values": ["none", "arrow"], "default": "none" }
+  },
+  "accessibility": { "role": "link or button depending on href presence", "focusVisible": "state.focus outline required" }
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Icon/glyph sizes actually used in source, by real usage site.",
+  "sizes": {
+    "xs": { "value": "12px", "usage": "automations bolt glyph", "measuredFrom": "src/components/Automations.jsx:89" },
+    "sm": { "value": "18px", "usage": "process step sparkle glyph", "measuredFrom": "src/components/Process.jsx:207" },
+    "md": { "value": "24px", "usage": "arrow/search/checkmark icons (CTA arrow, blog search, nav)", "measuredFrom": "src/pages/AboutUs.jsx:285; src/pages/Blog.jsx:272" },
+    "lg": { "value": "48px", "usage": "use-case-grid card icon, values-card ring glyph", "measuredFrom": "src/components/UseCaseGrid.jsx:40; src/pages/AboutUs.jsx:246" },
+    "xl": { "value": "80px", "usage": "features_bottom filled icon on the blue assurance cards", "measuredFrom": "src/components/FeaturesBottom.jsx:37" }
+  }
+}

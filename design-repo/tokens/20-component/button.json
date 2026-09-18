@@ -1,0 +1,10 @@
+{
+  "description": "Component-scoped token overrides for the button primitive, grounded in real class usage across the site (btn-primary/btn-secondary/btn-tertiary/btn-white/btn).",
+  "measuredFrom": "src/index.css component layer; src/pages/AboutUs.jsx:282; src/components/CTA.jsx:22-23; src/components/Prefooter.jsx:24",
+  "variants": {
+    "primary": { "background": "surface.brand", "text": "text.inverse", "radius": "foundation.radius.btn", "usage": "default CTA on paper/light grounds" },
+    "secondary": { "background": "transparent", "border": "border.default", "text": "text.primary", "usage": "secondary action on paper grounds" },
+    "tertiary": { "background": "transparent", "text": "text.inverse", "underlineOnHover": true, "usage": "de-emphasized link-style action on the blue CTA band" },
+    "white": { "background": "surface.page", "text": "surface.dark", "usage": "primary action on the blue CTA band (cta.band, hero.product)" }
+  }
+}

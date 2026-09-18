@@ -1,0 +1,16 @@
+{
+  "description": "The homepage hero's real em/clamp scaling system, deliberately preserved (not flattened to fixed pixels) per README.md:31-33 and Hero.jsx's own doc comment.",
+  "measuredFrom": "src/components/Hero.jsx:1-23; README.md:31-33",
+  "rootFontSize": "clamp(8px, 1vw, 1rem)",
+  "resolvedAt1440": "14.4px",
+  "rule": "Every child of .hero_visual is authored in `em`, relative to this clamped root — NOT converted to fixed px at build time. This is the mechanism the README calls out as 'preserved rather than flattened'.",
+  "measuredChildren": {
+    "hero_lines-wrap": { "x": "104", "width": "1232", "height": "71", "margin": "14.4px 0 -80.64px" },
+    "hero_step1-wrapper": { "position": "absolute, right:1016px" },
+    "hero_right": { "x": "516.7", "layout": "flex row, gap 14.4px, margin-top 64.8px" },
+    "hero_step2": { "x": "516.7", "width": "265", "height": "226" },
+    "hero_step3": { "x": "796", "width": "266", "height": "278" },
+    "hero_step4": { "x": "1076.8", "width": "259", "height": "51" }
+  },
+  "belowBreakpoint": { "at": "992px", "behavior": ".hero_visual is display:none; .hero_mobile (a horizontal tag rail + horizontally-scrolling card row) takes over." }
+}

@@ -1,0 +1,125 @@
+{
+  "description": "One entry per distinct real page shape observed across all 8 routes defined in src/App.jsx, plus the wildcard 404. Every route maps to exactly one template — verified 1:1, no gaps, no double-assignment (see extraction/measured-values.json#routeCoverage).",
+  "sharedChromeFinding": "src/App.jsx wraps ALL 8 real routes (plus the wildcard) in ONE Shell component rendering <Banner/><Navbar/>...<Routes/>...<Footer/> with zero pathname-based conditionals anywhere in Banner.jsx/Navbar.jsx/Footer.jsx (verified: none of the three components import useLocation or reference pathname/props). App.jsx's own comment claims Navbar/Footer are 'byte-identical shared chrome on /, /agent-studio, /decisioning and /about-us' — that sentence is STALE/non-exhaustive, not a scope boundary: the real code renders the identical Shell (and therefore identical Banner/Navbar/Footer) on ALL 8 routes including /blog, /demo, /privacy-policy and /terms too. Every template below therefore includes shell.banner + shell.navbar + shell.footer as required nodes, not just the 4 named in the comment.",
+  "templates": [
+    {
+      "id": "home",
+      "label": "Homepage",
+      "routes": ["/"],
+      "nodes": [
+        { "section": "shell.banner", "required": true, "repeatable": false },
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "hero.marketing", "required": true, "repeatable": false },
+        { "section": "brands.marquee", "required": true, "repeatable": false },
+        { "section": "marketing.split", "required": true, "repeatable": false },
+        { "section": "stack.panels", "required": true, "repeatable": false },
+        { "section": "process.flowchart", "required": true, "repeatable": false },
+        { "section": "automations.field", "required": true, "repeatable": false },
+        { "section": "case-studies.rail", "required": true, "repeatable": false },
+        { "section": "trusted.grid", "required": true, "repeatable": false },
+        { "section": "cta.band", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ],
+      "measuredFrom": "src/pages/Home.jsx:1-19"
+    },
+    {
+      "id": "product",
+      "label": "Product page (Agent Studio / Decisioning)",
+      "routes": ["/agent-studio", "/decisioning"],
+      "nodes": [
+        { "section": "shell.banner", "required": true, "repeatable": false },
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "hero.product", "required": true, "repeatable": false },
+        { "section": "brands.marquee", "required": true, "repeatable": false },
+        { "section": "features.rows", "required": true, "repeatable": false },
+        { "section": "use-case.grid", "required": true, "repeatable": false },
+        { "section": "case-studies.rail", "required": false, "repeatable": false, "variantCondition": "present when hero.product.variant == 'agent-studio' only — verified 0 .section_case-studies on /decisioning (src/pages/Decisioning.jsx:122-125)." },
+        { "section": "prefooter.crosssell", "required": true, "repeatable": false },
+        { "section": "cta.band", "required": false, "repeatable": false, "variantCondition": "present when hero.product.variant == 'agent-studio' only — /decisioning's prefooter closes the page, no trailing cta.band (src/pages/Decisioning.jsx:122-137)." },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ],
+      "measuredFrom": "src/pages/AgentStudio.jsx; src/pages/Decisioning.jsx"
+    },
+    {
+      "id": "about",
+      "label": "About Us",
+      "routes": ["/about-us"],
+      "nodes": [
+        { "section": "shell.banner", "required": true, "repeatable": false },
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "hero.about", "required": true, "repeatable": false },
+        { "section": "about.market", "required": true, "repeatable": false },
+        { "section": "about.values", "required": true, "repeatable": false },
+        { "section": "about.team", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ],
+      "measuredFrom": "src/pages/AboutUs.jsx:1-9",
+      "note": "NO brands.marquee, case-studies.rail, prefooter.crosssell or cta.band on this template — verified against the page's own doc comment and full JSX read; this is the only template with no cta.band-family closer at all."
+    },
+    {
+      "id": "blog-index",
+      "label": "Blog index",
+      "routes": ["/blog"],
+      "nodes": [
+        { "section": "shell.banner", "required": true, "repeatable": false },
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "blog.featured", "required": true, "repeatable": false },
+        { "section": "blog.list", "required": true, "repeatable": false },
+        { "section": "cta.band", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ],
+      "measuredFrom": "src/pages/Blog.jsx:165-368"
+    },
+    {
+      "id": "demo-form",
+      "label": "Demo request form",
+      "routes": ["/demo"],
+      "nodes": [
+        { "section": "shell.banner", "required": true, "repeatable": false },
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "demo.form", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ],
+      "measuredFrom": "src/pages/Demo.jsx"
+    },
+    {
+      "id": "legal",
+      "label": "Legal / long-form prose (Privacy Policy, Terms)",
+      "routes": ["/privacy-policy", "/terms"],
+      "nodes": [
+        { "section": "shell.banner", "required": true, "repeatable": false },
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "legal.prose", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ],
+      "measuredFrom": "src/pages/PrivacyPolicy.jsx; src/pages/Terms.jsx — both use the identical .section_legal > .legal_content layout shell, confirmed by direct comparison of both files."
+    },
+    {
+      "id": "not-found",
+      "label": "404 fallback",
+      "routes": ["*"],
+      "nodes": [
+        { "section": "shell.banner", "required": true, "repeatable": false },
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "utility.not-found", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ],
+      "measuredFrom": "src/App.jsx#NotFound (inline function, ~line 21; NOT a separate src/pages/NotFound.jsx — no such file exists in this project) and src/App.jsx's <Route path=\"*\">."
+    }
+  ],
+  "routeCoverage": {
+    "totalRealRoutes": 9,
+    "note": "8 named routes + 1 wildcard ('*'), all defined in src/App.jsx's <Routes>. Every route maps to exactly one template; 7 templates total (product and legal each cover 2 routes).",
+    "map": {
+      "/": "home",
+      "/agent-studio": "product",
+      "/decisioning": "product",
+      "/about-us": "about",
+      "/blog": "blog-index",
+      "/demo": "demo-form",
+      "/privacy-policy": "legal",
+      "/terms": "legal",
+      "*": "not-found"
+    }
+  }
+}

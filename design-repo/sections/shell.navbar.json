@@ -1,0 +1,27 @@
+{
+  "id": "shell.navbar",
+  "type": "section",
+  "purpose": "Primary site navigation and brand mark.",
+  "measuredFrom": "src/components/Navbar.jsx",
+  "renderedOnAllRoutes": true,
+  "content": {
+    "type": "object",
+    "properties": {
+      "logoAssetRole": { "type": "string", "const": "logo.self" },
+      "links": {
+        "type": "array",
+        "maxItems": 3,
+        "items": { "type": "object", "properties": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string" }, "internal": { "type": "boolean" }, "disabled": { "type": "boolean" } }, "required": ["label", "href"], "additionalProperties": false }
+      },
+      "products": {
+        "type": "array",
+        "maxItems": 2,
+        "items": { "type": "object", "properties": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string" }, "internal": { "type": "boolean" } }, "required": ["label", "href"], "additionalProperties": false }
+      }
+    },
+    "required": ["logoAssetRole", "links", "products"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustFollowNav": false, "mustPrecedeFooter": true },
+  "motion": { "pattern": "none", "reducedMotionFallback": "none", "note": "Position:relative, constant 72/90px height — never sticky, never hide/reveal on scroll. Verified src/components/Navbar.jsx:28-32." }
+}

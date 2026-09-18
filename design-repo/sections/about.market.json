@@ -1,0 +1,21 @@
+{
+  "id": "about.market",
+  "type": "section",
+  "purpose": "Mission statement over a blue ground with a real team photo.",
+  "measuredFrom": "src/pages/AboutUs.jsx:120-160",
+  "usedOnTemplates": ["about"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "headingLead": { "type": "string", "maxWords": 8 },
+      "headingMain": { "type": "string", "maxWords": 8 },
+      "paragraphs": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "type": "string", "maxWords": 60 } },
+      "photoAssetRole": { "type": "string", "const": "photo.own-team" }
+    },
+    "required": ["headingLead", "headingMain", "paragraphs", "photoAssetRole"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "background": { "ground": "surface.brand" },
+  "motion": { "pattern": "fd-h2 heading reveal + fd-paragraph body + fd-fade image", "reducedMotionFallback": "static final state" }
+}

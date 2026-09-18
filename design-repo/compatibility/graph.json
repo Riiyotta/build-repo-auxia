@@ -1,0 +1,54 @@
+{
+  "description": "Rhythm/adjacency/position rules JSON Schema can't express. Every rule below was written by reading templates/templates.json's actual node sequences at the moment the rule was drafted (per MASTER-GUIDE 3.18), not assumed. Each carries severity: error (hard failure) or warn (non-fatal notice).",
+  "rules": [
+    {
+      "id": "ONE_HERO_PER_PAGE",
+      "description": "Exactly one hero-family section (hero.marketing | hero.product | hero.about) per page, and it must be the first content node after shell.banner/shell.navbar.",
+      "appliesTo": "any node whose section id starts with 'hero.'",
+      "severity": "error",
+      "exception": "None — verified against every template in templates.json: home has hero.marketing, product has hero.product, about has hero.about, blog-index/demo-form/legal/not-found have no hero.* node at all and are exempt from the 'exactly one' requirement (they simply have zero, which is allowed for this family — the rule only fires if 2+ are present)."
+    },
+    {
+      "id": "SHELL_MUST_WRAP_EVERY_TEMPLATE",
+      "description": "shell.banner and shell.navbar must be the first two nodes, and shell.footer must be the last node, on every single template with no exception.",
+      "severity": "error",
+      "exception": "None — verified: all 7 templates in templates.json begin with [shell.banner, shell.navbar, ...] and end with [..., shell.footer]. This directly enforces the corrected App.jsx finding: shared chrome applies to ALL 8 routes + wildcard, not just the 4 named in App.jsx's stale comment."
+    },
+    {
+      "id": "CTA_BAND_MUST_PRECEDE_FOOTER",
+      "description": "If cta.band is present, it must be the last content node before shell.footer.",
+      "severity": "error",
+      "exception": "None needed — verified true on home, blog-index, and product(agent-studio variant) in templates.json. product(decisioning variant) has no cta.band node at all, so the rule does not fire for it."
+    },
+    {
+      "id": "NO_CTA_BAND_AND_PREFOOTER_TOGETHER_UNLESS_PRODUCT",
+      "description": "cta.band and prefooter.crosssell may both appear on the same page ONLY on the 'product' template (where prefooter.crosssell precedes cta.band on the agent-studio variant). On every other template they are mutually exclusive.",
+      "severity": "warn",
+      "exception": "product template, agent-studio variant only — verified in templates.json's product entry (prefooter.crosssell then cta.band, both present, cta.band marked variantCondition agent-studio)."
+    },
+    {
+      "id": "CASE_STUDIES_RAIL_NOT_ON_DECISIONING",
+      "description": "case-studies.rail must not appear on any PageSpec whose template is 'product' and whose hero.product.variant is 'decisioning'.",
+      "severity": "error",
+      "exception": "None — this rule exists specifically because /decisioning has zero .section_case-studies, verified directly against src/pages/Decisioning.jsx's own doc comment (line 961-964) and mirrored in templates/templates.json's variantCondition on that node."
+    },
+    {
+      "id": "ABOUT_HAS_NO_CONVERSION_CLOSER",
+      "description": "The 'about' template must NOT include brands.marquee, case-studies.rail, prefooter.crosssell, or cta.band anywhere in its node list.",
+      "severity": "error",
+      "exception": "None — verified: templates.json's 'about' entry contains none of these four section ids at all."
+    },
+    {
+      "id": "NO_CONSECUTIVE_SAME_SECTION",
+      "description": "The same section id must not appear twice in direct sequence (no immediately-adjacent duplicate nodes) anywhere in a PageSpec.",
+      "severity": "error",
+      "exception": "None — no template in templates.json repeats any section id at all, let alone consecutively."
+    },
+    {
+      "id": "LEGAL_PROSE_REQUIRES_VISIBLE_NOTICE",
+      "description": "Any PageSpec using the 'legal' template must include legal.prose.content.placeholderNotice as a non-empty string — this is a compliance requirement, not a style choice, mirroring the real, visibly-rendered notice confirmed in both src/pages/PrivacyPolicy.jsx and src/pages/Terms.jsx.",
+      "severity": "error",
+      "exception": "None."
+    }
+  ]
+}

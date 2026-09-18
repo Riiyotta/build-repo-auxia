@@ -1,0 +1,17 @@
+{
+  "id": "stack.panels",
+  "type": "section",
+  "purpose": "The 3-layer product stack (Agent Studio / Decisioning / Data & Context), NOT a 3-card grid — three full-width stacked panels.",
+  "measuredFrom": "src/components/Stack.jsx",
+  "usedOnTemplates": ["home"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "layers": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "object", "properties": { "title": { "type": "string", "maxWords": 4 }, "body": { "type": "string", "maxWords": 40 } }, "required": ["title", "body"], "additionalProperties": false } }
+    },
+    "required": ["layers"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "exactCount": 3, "structuralNote": "Three full-width .layout48_wrapper panels stacked with 16px gap, NOT a grid — a generator that lays this out as 3 equal columns contradicts the real structure." },
+  "motion": { "pattern": "fd-fade-children per panel", "reducedMotionFallback": "static final state" }
+}

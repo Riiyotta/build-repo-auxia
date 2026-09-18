@@ -1,0 +1,8 @@
+{
+  "description": "The site is overwhelmingly border-driven (1px oat-dark / rgba(255,255,255,.1|.3) hairlines), not shadow-driven. Exactly one real shadow usage was found by grep across src/.",
+  "measuredFrom": "src/components/Navbar.jsx:68",
+  "elevations": {
+    "flat": { "boxShadow": "none", "usage": "default for all cards/panels (borders carry separation, not shadow)" },
+    "dropdown": { "boxShadow": "Tailwind shadow-lg", "usage": "Navbar 'Products' dropdown panel only", "measuredFrom": "src/components/Navbar.jsx:68" }
+  }
+}

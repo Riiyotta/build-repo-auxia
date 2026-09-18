@@ -1,0 +1,10 @@
+{
+  "id": "tag",
+  "type": "primitive",
+  "description": "Filter/category tag control — the blog filter radio-as-tag pattern.",
+  "measuredFrom": "src/pages/Blog.jsx:226-249",
+  "props": {
+    "label": { "type": "string", "maxWords": 3 },
+    "active": { "type": "boolean", "default": false }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "hero.marketing",
+  "type": "section",
+  "purpose": "Homepage hero — establish the product's 1:1 personalization pitch with a live-feeling animated visual.",
+  "measuredFrom": "src/components/Hero.jsx",
+  "usedOnTemplates": ["home"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "heading": { "type": "string", "maxWords": 14 },
+      "workflowSteps": { "type": "array", "maxItems": 6, "items": { "type": "string", "maxWords": 6 } },
+      "audiences": { "type": "array", "maxItems": 3, "items": { "type": "array", "maxItems": 3, "items": { "type": "string", "maxWords": 5 } } },
+      "visualAssetRole": { "type": "string", "const": "diagram.generated-ui" }
+    },
+    "required": ["heading", "workflowSteps", "audiences"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "maxPerPage": 1 },
+  "responsive": {
+    "desktop": "hero_visual is an absolutely-positioned em-scaled diagram (see tokens/30-layout/hero-scaling.json) sitting above the h1 in flow.",
+    "mobile": { "breakpoint": "<992px", "change": "desktop visual is display:none; a horizontal tag rail + horizontally-scrolling card row (.hero_mobile) replaces it entirely — a structural swap, not a resize." }
+  },
+  "motion": { "pattern": "fd-h2 (SplitText word reveal) + fd-fade-children on the workflow/audience cards", "reducedMotionFallback": "render final state, no SplitText/stagger animation" }
+}

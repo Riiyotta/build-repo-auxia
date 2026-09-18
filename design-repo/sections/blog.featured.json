@@ -1,0 +1,30 @@
+{
+  "id": "blog.featured",
+  "type": "section",
+  "purpose": "Featured post spotlight above the filterable listing.",
+  "measuredFrom": "src/pages/Blog.jsx:165-215",
+  "usedOnTemplates": ["blog-index"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "post": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string", "maxWords": 2 },
+          "title": { "type": "string", "maxWords": 16 },
+          "author": { "type": "string", "maxWords": 3 },
+          "date": { "type": "string", "maxWords": 3 },
+          "readTime": { "type": "string", "maxWords": 3 },
+          "imageAssetRole": { "const": "photo.own-marketing" },
+          "href": { "type": "string" }
+        },
+        "required": ["category", "title", "author", "date", "readTime", "imageAssetRole", "href"],
+        "additionalProperties": false
+      }
+    },
+    "required": ["post"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true },
+  "motion": { "pattern": "fd-fade on featured card", "reducedMotionFallback": "static final state" }
+}

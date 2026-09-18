@@ -1,0 +1,13 @@
+{
+  "description": "Semantic type roles resolving to 00-foundation/typography.json.",
+  "roles": {
+    "heading.display": { "references": "foundation.typography.headingScale.h1" },
+    "heading.section": { "references": "foundation.typography.headingScale.h2" },
+    "heading.subsection": { "references": "foundation.typography.headingScale.h3" },
+    "heading.card": { "references": "foundation.typography.headingScale.h5" },
+    "body.default": { "references": "foundation.typography.bodyScale.base" },
+    "body.large": { "references": "foundation.typography.bodyScale.xl" },
+    "body.small": { "references": "foundation.typography.bodyScale.sm" },
+    "eyebrow": { "value": ".8125rem", "textTransform": "uppercase", "fontFamily": "mono", "measuredFrom": "src/pages/AboutUs.jsx:74; src/components/DecisionHero.jsx:36", "note": "The site's uppercase eyebrow/tag label style — IBM Plex Mono, not Archivo." }
+  }
+}

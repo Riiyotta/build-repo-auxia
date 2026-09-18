@@ -1,0 +1,53 @@
+{
+  "allowlistVersion": "1.0.0",
+  "description": "Closed list of what a generator may instantiate. Every id here MUST have a matching contract file under primitives/, components/, or sections/, and every real contract file MUST have an entry here — enforced automatically by extraction/verify_all.py's allowlist-parity check, not a one-time manual audit.",
+  "primitives": [
+    { "id": "button", "path": "primitives/button.json" },
+    { "id": "link", "path": "primitives/link.json" },
+    { "id": "badge", "path": "primitives/badge.json" },
+    { "id": "icon", "path": "primitives/icon.json" },
+    { "id": "input", "path": "primitives/input.json" },
+    { "id": "tag", "path": "primitives/tag.json" }
+  ],
+  "components": [
+    { "id": "card-base", "path": "components/card-base.json" },
+    { "id": "stat-block", "path": "components/stat-block.json" },
+    { "id": "marquee-rail", "path": "components/marquee-rail.json" },
+    { "id": "dot-field-canvas", "path": "components/dot-field-canvas.json" },
+    { "id": "feature-connector-canvas", "path": "components/feature-connector-canvas.json" }
+  ],
+  "sections": [
+    { "id": "shell.banner", "path": "sections/shell.banner.json" },
+    { "id": "shell.navbar", "path": "sections/shell.navbar.json" },
+    { "id": "shell.footer", "path": "sections/shell.footer.json" },
+    { "id": "hero.marketing", "path": "sections/hero.marketing.json" },
+    { "id": "hero.product", "path": "sections/hero.product.json" },
+    { "id": "hero.about", "path": "sections/hero.about.json" },
+    { "id": "about.market", "path": "sections/about.market.json" },
+    { "id": "about.values", "path": "sections/about.values.json" },
+    { "id": "about.team", "path": "sections/about.team.json" },
+    { "id": "brands.marquee", "path": "sections/brands.marquee.json" },
+    { "id": "marketing.split", "path": "sections/marketing.split.json" },
+    { "id": "stack.panels", "path": "sections/stack.panels.json" },
+    { "id": "process.flowchart", "path": "sections/process.flowchart.json" },
+    { "id": "automations.field", "path": "sections/automations.field.json" },
+    { "id": "case-studies.rail", "path": "sections/case-studies.rail.json" },
+    { "id": "trusted.grid", "path": "sections/trusted.grid.json" },
+    { "id": "cta.band", "path": "sections/cta.band.json" },
+    { "id": "features.rows", "path": "sections/features.rows.json" },
+    { "id": "use-case.grid", "path": "sections/use-case.grid.json" },
+    { "id": "prefooter.crosssell", "path": "sections/prefooter.crosssell.json" },
+    { "id": "blog.featured", "path": "sections/blog.featured.json" },
+    { "id": "blog.list", "path": "sections/blog.list.json" },
+    { "id": "demo.form", "path": "sections/demo.form.json" },
+    { "id": "legal.prose", "path": "sections/legal.prose.json" },
+    { "id": "utility.not-found", "path": "sections/utility.not-found.json" }
+  ],
+  "assetRoles": [
+    "logo.self",
+    "logo.invented-wordmark",
+    "photo.own-team",
+    "photo.own-marketing",
+    "diagram.generated-ui"
+  ]
+}

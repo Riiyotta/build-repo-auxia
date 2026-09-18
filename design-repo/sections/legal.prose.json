@@ -1,0 +1,25 @@
+{
+  "id": "legal.prose",
+  "type": "section",
+  "purpose": "Long-form legal document layout: sticky TOC rail + rich-text column. Shared shape between /privacy-policy and /terms.",
+  "measuredFrom": "src/pages/PrivacyPolicy.jsx; src/pages/Terms.jsx",
+  "usedOnTemplates": ["legal"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "docTitle": { "type": "string", "maxWords": 4 },
+      "toc": { "type": "array", "minItems": 1, "items": { "type": "object", "properties": { "id": { "type": "string" }, "label": { "type": "string", "maxWords": 8 } }, "required": ["id", "label"], "additionalProperties": false } },
+      "placeholderNotice": { "type": "string", "maxWords": 60 }
+    },
+    "required": ["docTitle", "toc", "placeholderNotice"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true },
+  "responsive": {
+    "desktop": "12-col-equivalent grid, 400px/712px columns, gap 120px, left rail sticky.",
+    "tablet": { "breakpoint": "991px", "change": "flex column, gap 32px; left rail no longer sticky." },
+    "mobile": { "breakpoint": "767px", "change": "gap 24px on left rail; rich-wrapper padding reduces to 24px (16px horizontal at 390px)." }
+  },
+  "contentPolicy": "The body prose is REPRESENTATIVE PLACEHOLDER TEXT, not real legal copy. A visible in-page notice (role=\"note\", warning-colored) is REQUIRED and must render above the body prose — verified actually present and rendered in both src/pages/PrivacyPolicy.jsx:161-173 and src/pages/Terms.jsx:132-141, not merely claimed. A generated instance of this section must always include and render `placeholderNotice` visibly; omitting it is a compliance regression, not a cosmetic simplification.",
+  "motion": { "pattern": "fd-fade on the notice banner only", "reducedMotionFallback": "static final state" }
+}

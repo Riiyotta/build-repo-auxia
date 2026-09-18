@@ -1,0 +1,9 @@
+{
+  "description": "Vertical rhythm scale, measured across multiple section wrappers (not Tailwind's default spacing scale — these are the real per-breakpoint values Webflow shipped).",
+  "measuredFrom": "src/index.css:64-73; src/components/Stack.jsx:137; src/pages/PrivacyPolicy.jsx:16-19",
+  "sectionRhythm": {
+    "standard": { "desktop": "128px", "tablet": "96px", "mobileLarge": "64px", "mobile": "48px", "measuredFrom": "src/index.css:64-71 (.padding-section-large)" },
+    "tall": { "desktop": "180px", "tablet": "80px", "mobile": "64px", "measuredFrom": "src/index.css:72-73 (.section-pad-xl); README.md/Marketing.jsx:94" }
+  },
+  "globalGutter": { "value": "px-5 md:px-10", "pixels": { "mobile": "20px", "tablet-up": "40px" }, "measuredFrom": "src/index.css:60 (.padding-global)" }
+}

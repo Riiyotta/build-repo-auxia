@@ -1,0 +1,10 @@
+{
+  "id": "icon",
+  "type": "primitive",
+  "description": "Inline SVG glyph. All icons are hand-authored inline SVG paths in source — no icon font, no external icon CDN.",
+  "measuredFrom": "design-repo/tokens/00-foundation/icon-size.json",
+  "props": {
+    "name": { "type": "enum", "values": ["arrow-diagonal", "checkmark", "search", "bolt", "sparkle", "use-case-launch", "use-case-diagnose", "use-case-approve", "use-case-refresh", "use-case-report", "use-case-board", "feature-guardrails", "feature-approval", "feature-roles", "feature-security", "feature-qa", "feature-explainable"] },
+    "size": { "type": "enum", "values": ["xs", "sm", "md", "lg", "xl"] }
+  }
+}

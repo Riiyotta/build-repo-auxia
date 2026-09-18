@@ -1,0 +1,15 @@
+{
+  "id": "marquee-rail",
+  "type": "component",
+  "description": "Infinite horizontal CSS-animated marquee of a duplicated track, masked at both edges. Used for the brands strip and the demo page's leading-enterprises strip.",
+  "composesPrimitives": ["icon"],
+  "measuredFrom": "src/components/Brands.jsx:24-38",
+  "props": {
+    "items": { "type": "array", "itemAssetRole": "logo.invented-wordmark", "minItems": 1 },
+    "speedPxPerSec": { "type": "number", "measuredValue": 42.2, "measuredFrom": "src/components/Brands.jsx:28-30" }
+  },
+  "motion": {
+    "pattern": "css-marquee-loop",
+    "reducedMotionFallback": "static single row, no scroll/translate animation"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "trusted.grid",
+  "type": "section",
+  "purpose": "Trust/compliance pillars (SOC2, privacy, GDPR).",
+  "measuredFrom": "src/components/Trusted.jsx",
+  "usedOnTemplates": ["home"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "headingLead": { "type": "string", "maxWords": 4 },
+      "headingMain": { "type": "string", "maxWords": 4 },
+      "body": { "type": "string", "maxWords": 30 },
+      "pillars": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "object", "properties": { "title": { "type": "string", "maxWords": 6 }, "body": { "type": "string", "maxWords": 15 } }, "required": ["title", "body"], "additionalProperties": false } }
+    },
+    "required": ["headingLead", "headingMain", "body", "pillars"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "exactCount": 3 },
+  "background": { "ground": "surface.dark" },
+  "motion": { "pattern": "fd-fade-children on pillar cards, GSAP-animated left-edge vertical rule height", "reducedMotionFallback": "cards at rest opacity, rule renders full height statically" }
+}

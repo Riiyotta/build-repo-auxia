@@ -1,0 +1,11 @@
+{
+  "description": "Real container widths, measured directly from tailwind.config.js's maxWidth extension (not guessed).",
+  "measuredFrom": "tailwind.config.js:30-35",
+  "containers": {
+    "large": { "value": "77rem", "usage": "default content container (container-large)" },
+    "medium": { "value": "64rem", "usage": "narrower content container (container-medium)" },
+    "small": { "value": "48rem", "usage": "narrowest content container (container-small)" },
+    "nav": { "value": "90rem", "usage": "navbar's own wider container (navbar1_container)" }
+  },
+  "globalPadding": { "value": "px-5 md:px-10", "measuredFrom": "src/index.css:60" }
+}

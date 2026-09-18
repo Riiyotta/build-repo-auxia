@@ -1,0 +1,18 @@
+{
+  "id": "shell.banner",
+  "type": "section",
+  "purpose": "Top-of-page announcement bar driving awareness of a new launch.",
+  "measuredFrom": "src/components/Banner.jsx",
+  "renderedOnAllRoutes": true,
+  "content": {
+    "type": "object",
+    "properties": {
+      "text": { "type": "string", "maxWords": 6 },
+      "href": { "type": "string", "assetRole": null }
+    },
+    "required": ["text", "href"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true },
+  "motion": { "pattern": "none", "reducedMotionFallback": "none" }
+}

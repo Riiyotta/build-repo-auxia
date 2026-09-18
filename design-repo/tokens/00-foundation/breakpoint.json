@@ -1,0 +1,13 @@
+{
+  "description": "The reference site's real Webflow breakpoints. README.md explicitly calls mixing these with Tailwind's own defaults (640/768/1024/1280/1536) 'the single most common source of layout drift' on this project. This design-repo's own responsive contracts always cite these three, never Tailwind defaults.",
+  "measuredFrom": "README.md:27-28; verified against min-[992px]/min-[768px]/min-[480px] usage throughout src/components/*.jsx and src/index.css",
+  "breakpoints": {
+    "desktop": { "min": "992px", "tailwindArbitrary": "min-[992px]:" },
+    "tablet": { "min": "768px", "tailwindArbitrary": "min-[768px]: / md:" , "note": "Tailwind's own md: (768px) happens to coincide here and is used interchangeably in source with min-[768px]:." },
+    "mobile-large": { "min": "480px", "tailwindArbitrary": "min-[480px]:" },
+    "mobile": { "max": "479px", "note": "Below 480px; several components (Automations, hero visuals) scale continuously with vw rather than stepping again here." }
+  },
+  "additionalObserved": {
+    "1280px": { "usage": "A few sections (Marketing, section-pad-xl) add an extra min-[1280px]: step for their tallest desktop rhythm — verified at tailwind.config.js/src/index.css usage sites (e.g. src/components/Marketing.jsx:23, src/index.css:67,73). Documented as an additional real step, not a Tailwind default being smuggled back in." }
+  }
+}

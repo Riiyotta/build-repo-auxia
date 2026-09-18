@@ -1,0 +1,13 @@
+{
+  "description": "Curated view of what a generator may reference — not the whole token system.",
+  "colorRoles": [
+    "surface.page", "surface.brand", "surface.dark", "surface.dark-alt", "surface.card-warm", "surface.muted",
+    "text.primary", "text.inverse", "text.muted", "text.accent",
+    "border.default", "border.on-dark", "border.on-brand",
+    "state.success", "state.warning", "state.error", "state.focus"
+  ],
+  "typeRoles": ["heading.display", "heading.section", "heading.subsection", "heading.card", "body.default", "body.large", "body.small", "eyebrow"],
+  "radii": ["btn", "card-sm", "card-lg", "pill"],
+  "containers": ["large", "medium", "small", "nav"],
+  "breakpoints": ["desktop", "tablet", "mobile-large", "mobile"]
+}

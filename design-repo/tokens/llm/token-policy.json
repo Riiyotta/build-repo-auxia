@@ -1,0 +1,13 @@
+{
+  "description": "What's enforced by schema/validator vs. convention-only.",
+  "enforced": [
+    "Every section's assetRole must be one of the closed enum in tokens/llm/component-allowlist.json's assetRoles list — schema-closed.",
+    "Every section node must declare motion.reducedMotionFallback — schema-required.",
+    "template node sequences are a closed enum per templates/templates.json — schema-closed."
+  ],
+  "conventionOnly": [
+    "Preferring semantic color roles over raw hex in new copy/markup (not machine-checked; a human/reviewer convention).",
+    "Using the 992/768/480 breakpoint set rather than Tailwind defaults for any new responsive rule."
+  ],
+  "resolutionOrder": ["foundation", "theme-mode-overrides", "semantic-aliases", "component-tokens", "permitted-local-overrides", "responsive-overrides"]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "prefooter.crosssell",
+  "type": "section",
+  "purpose": "Cross-sell the sibling product before the footer.",
+  "measuredFrom": "src/components/Prefooter.jsx",
+  "usedOnTemplates": ["product"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "label": { "type": "string", "maxWords": 3 },
+      "heading": { "type": "string", "maxWords": 3 },
+      "body": { "type": "string", "maxWords": 30 },
+      "ctaLabel": { "type": "string", "maxWords": 3 },
+      "to": { "type": "string" }
+    },
+    "required": ["label", "heading", "body", "ctaLabel", "to"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustPrecedeFooter": true, "note": "On /decisioning this is the LAST content section before shell.footer (no cta.band follows). On /agent-studio a cta.band follows it." },
+  "background": { "ground": "surface.brand" },
+  "motion": { "pattern": "fd-fade-children", "reducedMotionFallback": "static final state" }
+}

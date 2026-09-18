@@ -1,0 +1,21 @@
+{
+  "id": "use-case.grid",
+  "type": "section",
+  "purpose": "Use-case card grid, 3 or 4 columns depending on the product page.",
+  "measuredFrom": "src/components/UseCaseGrid.jsx",
+  "usedOnTemplates": ["product"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "eyebrow": { "type": "string", "maxWords": 3 },
+      "heading": { "type": "string", "maxWords": 10 },
+      "cols": { "type": "integer", "enum": [3, 4] },
+      "cards": { "type": "array", "minItems": 4, "maxItems": 6, "items": { "type": "object", "properties": { "icon": { "type": "string" }, "title": { "type": "string", "maxWords": 6 }, "body": { "type": "string", "maxWords": 25 } }, "required": ["icon", "title", "body"], "additionalProperties": false } }
+    },
+    "required": ["eyebrow", "heading", "cols", "cards"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "note": "cols=3 on /agent-studio (6 cards), cols=4 on /decisioning (4 cards) — both real, verified counts." },
+  "background": { "ground": "#fefdf5" },
+  "motion": { "pattern": "fd-fade-children on cards", "reducedMotionFallback": "cards at rest opacity" }
+}

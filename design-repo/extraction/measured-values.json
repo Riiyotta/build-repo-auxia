@@ -1,0 +1,30 @@
+{
+  "description": "Citation ledger: real evidence backing every token/section/template decision in this design-repo. Degrades gracefully (a warning, not a failure) when the sibling source project is not present, per BUILD-GUIDE 2.7's self-containment rule — this design-repo does NOT depend on these external paths existing for its own schema/adversarial validation to run.",
+  "siblingSourceNote": "This file cites files OUTSIDE design-repo/ (the sibling project the design-repo was extracted from) purely as a build-time evidence trail. registry.manifest.json's entryPoints deliberately does NOT reference any of these — see MASTER-GUIDE 3.9.",
+  "frameworkCorrection": {
+    "claim": "sourceProject.framework is React 19 (react ^19.2.8, react-dom ^19.2.8), NOT React 18 as README.md's opening line states.",
+    "measuredFrom": "../package.json:14-15",
+    "readmeDiscrepancy": "README.md:3 says 'A React 18 + Vite + Tailwind v3 rebuild' — stale/incorrect against the real package.json. This design-repo cites package.json, not the README's opening line, for the framework field."
+  },
+  "sharedChromeFinding": {
+    "claim": "Banner/Navbar/Footer render identically on ALL 8 real routes + the wildcard 404, not just the 4 named in App.jsx's own comment.",
+    "measuredFrom": "../src/App.jsx:16-18 (comment), ../src/App.jsx:36-63 (Shell wraps all Routes identically), ../src/components/Banner.jsx, ../src/components/Navbar.jsx, ../src/components/Footer.jsx (none of the three import useLocation or take route-dependent props)",
+    "verification": "grep -n 'useLocation|pathname|props' on Navbar.jsx/Footer.jsx/Banner.jsx returned 0 matches — confirms zero per-route conditional logic in any of the three components."
+  },
+  "licensingDecisions": {
+    "invented_logos": { "claim": "9 real third-party customer logos are not reproduced; 9 original invented wordmarks ship instead at the same 5:1 aspect ratio.", "measuredFrom": "../README.md:74-80; ../public/assets/logos/*.svg (9 files confirmed: cascadia, halcyon, lumenline, meridian, northwind, orbital, quanta, stratafold, verdant)" },
+    "placeholder_legal": { "claim": "/privacy-policy and /terms use representative placeholder prose with a REQUIRED, visibly-rendered in-page notice.", "measuredFrom": "../src/pages/PrivacyPolicy.jsx:161-173; ../src/pages/Terms.jsx:132-141 — both confirmed to render a role=\"note\" warning-colored banner directly above the body prose, not merely claimed in a comment." },
+    "no_outbound_links": { "claim": "All links to the real reference site resolve to '#'; the demo form is local state only and performs zero network requests.", "measuredFrom": "../src/components/Navbar.jsx:4-10; ../src/components/Footer.jsx:10-19; ../src/pages/Demo.jsx:125-135", "independentVerification": "grep -rniE 'https?://|fetch\\(|XMLHttpRequest|axios' src/ during this build found zero real external-request call sites — only XML namespace URIs (xmlns=\"http://www.w3.org/2000/svg\") in inline SVG markup, which are not network requests." },
+    "self_hosted_fonts": { "claim": "Archivo (SIL OFL, substitute) and IBM Plex Mono (SIL OFL, exact match) are both self-hosted; zero external font requests.", "measuredFrom": "../public/assets/fonts/Archivo-var.woff2, IBMPlexMono-400.woff2, IBMPlexMono-500.woff2 (all 3 confirmed present); ../src/index.css:1-27" }
+  },
+  "routeCoverage": {
+    "totalRoutes": 9,
+    "measuredFrom": "../src/App.jsx:44-52 (8 named <Route> entries + 1 wildcard '*')",
+    "map": { "/": "home", "/agent-studio": "product", "/decisioning": "product", "/about-us": "about", "/blog": "blog-index", "/demo": "demo-form", "/privacy-policy": "legal", "/terms": "legal", "*": "not-found" }
+  },
+  "notFoundLocation": {
+    "claim": "NotFound is defined inline in src/App.jsx (~line 21), NOT a separate src/pages/NotFound.jsx file.",
+    "measuredFrom": "../src/App.jsx:20-30",
+    "verification": "find src/pages -iname '*notfound*' -> 0 results, confirming no such file exists."
+  }
+}

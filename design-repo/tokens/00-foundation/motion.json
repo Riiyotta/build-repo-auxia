@@ -1,0 +1,66 @@
+{
+  "description": "Real motion primitives measured off the live original by reading GSAP calls / intercepting CanvasRenderingContext2D, per src/hooks/useMotion.js and src/hooks/useHeroIntro.js's own documentation comments. Every value here is quoted from those files' own doc comments, not re-derived.",
+  "measuredFrom": "src/hooks/useMotion.js:1-30; src/hooks/useHeroIntro.js",
+  "reducedMotion": {
+    "mediaQuery": "(prefers-reduced-motion: reduce)",
+    "respectedIn": [
+      "src/hooks/useMotion.js:31",
+      "src/hooks/useHeroIntro.js:65",
+      "src/components/MarketingCanvas.jsx:183",
+      "src/components/FeatureConnector.jsx:125",
+      "src/index.css:144",
+      "src/index.css:167"
+    ],
+    "verificationNote": "Independently grepped for 'prefers-reduced-motion|matchMedia' across src/ during this build — all 6 real occurrences above confirmed directly; the README's claim ('All motion respects prefers-reduced-motion', README.md:55) reproduces."
+  },
+  "revealVocabulary": {
+    "description": "Named scroll-reveal patterns, quoted verbatim from useMotion.js's own doc comment (lines 12-24). All are 'top 80%' ScrollTrigger start, play-once.",
+    "fd-h2": { "technique": "SplitText words, masked", "from": { "yPercent": 100, "opacity": 0 }, "to": { "yPercent": 0, "opacity": 1 }, "duration": 1.2, "stagger": 0.05, "ease": "power4.out" },
+    "fd-paragraph": { "technique": "SplitText lines, masked", "from": { "yPercent": 100, "opacity": 0 }, "to": { "yPercent": 0, "opacity": 1 }, "duration": 1, "stagger": 0.1, "ease": "power4.out" },
+    "fd-fade-children": { "technique": "direct children", "from": { "y": 25, "opacity": 0 }, "to": { "y": 0, "opacity": 1 }, "duration": 1.5, "stagger": 0.12, "ease": "power4.out" },
+    "fd-fade": { "technique": "single element", "from": { "y": 20, "opacity": 0 }, "to": { "y": 0, "opacity": 1 }, "duration": 1.3, "ease": "power4.out" }
+  },
+  "splitTextSubstitute": {
+    "note": "SplitText and DrawSVG are paid GSAP Club plugins; the reference uses both. This project reproduces them by hand rather than bundling the paid plugins.",
+    "splitText": "A DOM word/line splitter (src/hooks/useMotion.js splitMasked()) using overflow:clip mask wrappers, reproducing the reference's exact numbers above.",
+    "drawSvg": "stroke-dasharray animation (setLineDash-equivalent for SVG paths) used for the about/team/values tag-line and zig-zag SVGs (src/pages/AboutUs.jsx) and the canvas connector's setLineDash (src/components/FeatureConnector.jsx).",
+    "scrollSmoother": "Deliberately NOT used, per README.md:40 and useMotion.js's own scope."
+  },
+  "canvasMotion": {
+    "featureConnector": {
+      "measuredFrom": "src/components/FeatureConnector.jsx:1-57",
+      "canvasSize": "1232x180 (2x DPR backing store)",
+      "strokeOrder": "track (oat #e2e1d3) then progress (blue #0b4fff), lineWidth 3, arcTo 40px corners",
+      "pathLengths": { "1232": 779.66, "1200": 763.66, "912": 619.66 },
+      "drawIn": "setLineDash([drawn, pathLen]), drawn sweeping 0 -> pathLen-10, progress ramp from top=0.75*vh to top=0.40*vh"
+    },
+    "ctaDotField": {
+      "measuredFrom": "src/components/CtaCanvas.jsx:1-44",
+      "canvasType": "canvas (NOT CSS radial-gradient)",
+      "pitch": 42,
+      "origin": [6, 8.2],
+      "radius": 3,
+      "fill": "rgba(255,255,255,0.18)",
+      "renderModel": "Visually static field; original runs a 60fps rAF loop repainting identical arcs, this build redraws once per size change instead of burning frame budget."
+    },
+    "marketingDotField": {
+      "measuredFrom": "src/components/MarketingCanvas.jsx:21-35",
+      "canvasType": "canvas (NOT CSS radial-gradient)",
+      "pitch": 37.09,
+      "origin": [55.65, 18.55],
+      "radius": 5.01,
+      "fill": "rgba(255,255,255,0.10)",
+      "growsOnScroll": "0 -> 5.01 radius, scroll-driven not rAF-looped"
+    },
+    "productHeroDotField": {
+      "measuredFrom": "src/components/AgentHero.jsx:30-37",
+      "canvasType": "CSS radial-gradient on a 20px tile — NOT canvas. Explicitly distinct from the two canvas fields above; do not conflate."
+    },
+    "productHeroTimeline": {
+      "measuredFrom": "src/hooks/useMotion.js:398-422",
+      "description": "Master timeline where each tag pill cues its own column's content, per-group y-offsets on the agent-hero variant.",
+      "groups": { "user": 48, "ingest": 32, "offers": 32, "cards": 40, "experience": 64 },
+      "cueTiming": "tag1 @1.11s then 3 user cards cascade ~0.15s apart; tag2 @2.04s then ingest; tag3 @2.50s then offers; tag4 @2.96s then cards; tag5 then experience."
+    }
+  }
+}

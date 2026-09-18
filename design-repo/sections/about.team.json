@@ -1,0 +1,22 @@
+{
+  "id": "about.team",
+  "type": "section",
+  "purpose": "Hiring / careers cross-sell closing the about page.",
+  "measuredFrom": "src/pages/AboutUs.jsx:265-314",
+  "usedOnTemplates": ["about"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "tagLabel": { "type": "string", "maxWords": 3 },
+      "heading": { "type": "string", "maxWords": 10 },
+      "body": { "type": "string", "maxWords": 55 },
+      "ctaLabel": { "type": "string", "maxWords": 4 },
+      "photoAssetRole": { "type": "string", "const": "photo.own-team" }
+    },
+    "required": ["tagLabel", "heading", "body", "ctaLabel", "photoAssetRole"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeLast": true, "exception": "true only within the about template — the about template has no cta.band/prefooter after it; site-wide shell.footer still follows." },
+  "background": { "ground": "#e6e5d8 (grounds.about-team)" },
+  "motion": { "pattern": "SVG closed-loop stroke travel around the photo (3499px loop, 5% segment, 6s linear loop) + fd-fade-children on CTA", "reducedMotionFallback": "static closed-loop outline at full opacity, no travelling segment" }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "dot-field-canvas",
+  "type": "component",
+  "description": "Reusable dot-grid background. THREE real, distinct instances exist in source with different rendering technology and geometry — never conflate them. See design-repo/tokens/00-foundation/motion.json#canvasMotion for full citations.",
+  "measuredFrom": "src/components/CtaCanvas.jsx; src/components/MarketingCanvas.jsx; src/components/AgentHero.jsx:30-37",
+  "variants": {
+    "cta-grid": { "renderer": "canvas", "pitch": 42, "radius": 3, "fill": "rgba(255,255,255,0.18)", "static": true },
+    "marketing-panel": { "renderer": "canvas", "pitch": 37.09, "radius": 5.01, "fill": "rgba(255,255,255,0.10)", "growsOnScroll": true },
+    "product-hero": { "renderer": "css-radial-gradient", "tile": "20px", "note": "NOT canvas — CSS background-image radial-gradient on a 20px tile. A generator must not implement this one with a <canvas> element." }
+  }
+}

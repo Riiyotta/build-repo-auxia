@@ -1,0 +1,22 @@
+{
+  "id": "brands.marquee",
+  "type": "section",
+  "purpose": "Social-proof logo strip.",
+  "measuredFrom": "src/components/Brands.jsx",
+  "usedOnTemplates": ["home", "product"],
+  "content": {
+    "type": "object",
+    "properties": {
+      "heading": { "type": "string", "maxWords": 8 },
+      "logos": { "type": "array", "minItems": 1, "items": { "type": "object", "properties": { "assetRole": { "const": "logo.invented-wordmark" }, "slug": { "type": "string" } }, "required": ["assetRole", "slug"], "additionalProperties": false } }
+    },
+    "required": ["heading", "logos"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "maxPerPage": 1 },
+  "motion": {
+    "pattern": "marquee-rail css infinite scroll, measured 42.2px/sec, pauseOnHover:false",
+    "reducedMotionFallback": "static single row, no translate animation"
+  },
+  "licensingNote": "The 9 logos are ORIGINAL invented wordmarks (public/assets/logos/*.svg — cascadia, halcyon, lumenline, meridian, northwind, orbital, quanta, stratafold, verdant, all confirmed present) standing in for 9 real third-party corporate marks the reference shows. Never regenerate a real company's logo here — only the assetRole 'logo.invented-wordmark' is permitted, matching the same 5:1 aspect ratio."
+}

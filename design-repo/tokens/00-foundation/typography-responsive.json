@@ -1,0 +1,12 @@
+{
+  "description": "Real, measured breakpoint step-downs for the heading scale, quoted directly from src/index.css's base-layer h1-h6 rules (not inferred). Confirms README.md:24-27's claim with exact px values.",
+  "measuredFrom": "src/index.css:42-56",
+  "note": "These are the site's real 992/768/480 breakpoints (see breakpoint.json), NOT Tailwind's default md/lg scale — README.md:27-28 calls mixing the two the single most common source of layout drift on this project. h3 deliberately holds 48px (3rem) down to 768px and does NOT step at 991px, unlike h1/h2/h4 — a real, verified asymmetry, not an oversight.",
+  "steps": {
+    "h1": { "desktop": "6.5rem", "max-991px": "4rem", "max-767px": "2.5rem", "measuredFrom": "src/index.css:42,51,54" },
+    "h2": { "desktop": "4rem", "max-991px": "3rem", "max-767px": "2rem", "measuredFrom": "src/index.css:43,51,54" },
+    "h3": { "desktop": "3rem", "max-991px": "3rem (no change)", "max-767px": "1.5rem", "measuredFrom": "src/index.css:44,54", "note": "Holds at >=768px — the 991px breakpoint has no h3 rule." },
+    "h4": { "desktop": "4rem", "max-991px": "3rem", "max-767px": "2rem", "measuredFrom": "src/index.css:45,51,55" },
+    "h6": { "desktop": "1rem (700 weight)", "max-767px": ".75rem", "measuredFrom": "src/index.css:47,55" }
+  }
+}

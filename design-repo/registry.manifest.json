@@ -1,0 +1,63 @@
+{
+  "name": "auxia-design-repo",
+  "repositoryId": "auxia-design-repo",
+  "repositoryVersion": "1.0.0",
+  "pageSpecVersion": "1.0.0",
+  "allowlistVersion": "1.0.0",
+  "assetRolesVersion": "1.0.0",
+  "defaultTheme": "light",
+  "schemaValidatedThemes": ["light"],
+  "status": "design-review-pending",
+  "productionApproved": false,
+  "version": "1.0.0",
+  "generatedAt": "2026-09-18",
+  "sourceProject": "Auxia (React 18 + Vite + Tailwind v3 rebuild of a Webflow marketing site — see ../README.md)",
+
+  "entryPoints": {
+    "pageSpecSchema": "schema/pagespec.schema.json",
+    "pageSpecExample": "schema/example.pagespec.json",
+    "tokens": "tokens/00-foundation/, tokens/10-semantic/, tokens/20-component/, tokens/30-layout/, tokens/themes/",
+    "tokenCatalog": "tokens/llm/token-catalog.json",
+    "tokenPolicy": "tokens/llm/token-policy.json",
+    "allowlist": "tokens/llm/component-allowlist.json",
+    "compatibilityGraph": "compatibility/graph.json",
+    "assetRoles": "assets/asset-roles.json",
+    "templates": "templates/templates.json",
+    "sections": "sections/",
+    "primitives": "primitives/",
+    "components": "components/",
+    "semanticValidator": "schema/semantic_validate.py",
+    "adversarialTests": "schema/tests/adversarial_test.py",
+    "verification": "extraction/verify_all.py",
+    "evidenceLedger": "extraction/measured-values.json"
+  },
+
+  "counts": {
+    "tokens": 18,
+    "primitives": 6,
+    "components": 5,
+    "sections": 25,
+    "templates": 7,
+    "routes": 9,
+    "compatibilityRules": 8
+  },
+  "countsNote": "Recomputed from disk by extraction/verify_all.py on every run, not carried over by hand — see that script's manifest/reality drift check. tokens=18 counts every *.json file under tokens/ (00-foundation:9, 10-semantic:2, 20-component:1, 30-layout:2, themes:1, llm:3 — component-allowlist.json, token-catalog.json, token-policy.json). sections=25 matches both sections/*.json on disk and tokens/llm/component-allowlist.json's sections array. templates=7 (home, product, about, blog-index, demo-form, legal, not-found) and routes=9 is the sum of each template's routes array (8 real <Route> entries in ../src/App.jsx plus the wildcard '*'), matching extraction/measured-values.json's routeCoverage.totalRoutes.",
+
+  "themeNote": "This project has exactly ONE theme. tokens/themes/light.json is the only theme instance on disk, and a grep across ../src/ and ../tailwind.config.js finds no dark-mode media query, no 'dark:' Tailwind variant, and no theme-toggle component anywhere (see tokens/themes/light.json's own verification field). defaultTheme/schemaValidatedThemes state that directly rather than assuming a light+dark default this project doesn't have.",
+
+  "versioningNote": "Honest scope of each version field, so none of them reads as a stronger guarantee than it is: (a) allowlistVersion IS machine-enforced — extraction/verify_all.py's version-parity check fails if it does not equal tokens/llm/component-allowlist.json's own `allowlistVersion` field. (b) assetRolesVersion is mirrored by a `version` field inside assets/asset-roles.json, and verify_all.py checks that parity too. (c) repositoryVersion and pageSpecVersion are DOCUMENTATION-ONLY. There is no specVersion field inside schema/pagespec.schema.json or schema/example.pagespec.json for pageSpecVersion to be checked against, and nothing computes repositoryVersion from content — both are hand-maintained changelog markers. Do not treat a matching pageSpecVersion as proof that a consumer and this schema agree; read the schema. tokens/llm/token-catalog.json and tokens/llm/token-policy.json carry no `version` field of their own and are therefore NOT part of the machine-checked version-parity set — they are curated views maintained alongside repositoryVersion.",
+
+  "buildHistory": [
+    {
+      "pass": 1,
+      "scope": "tokens/, primitives/, components/, sections/ (25 files), templates/templates.json, compatibility/graph.json, schema/pagespec.schema.json, schema/example.pagespec.json, schema/semantic_validate.py, schema/tests/adversarial_test.py, extraction/measured-values.json",
+      "status": "completed by a prior pass — 30/30 adversarial tests passing, semantic_validate.py clean on the bundled example, prior to this manifest existing"
+    },
+    {
+      "pass": 2,
+      "date": "2026-09-18",
+      "scope": "added the three missing N0 contract files: registry.manifest.json (this file), assets/asset-roles.json (carrying forward ../README.md's licensing decisions — invented wordmarks, placeholder legal notice, self-hosted OFL fonts, no-outbound-links — as hard constraints on generated content), and extraction/verify_all.py (schema+semantic validation, allowlist parity, citation validity with graceful degradation when no sibling src/ is present, a manifest/reality drift check that recomputes every counts field from disk, version parity, and an absolute-path scan)",
+      "status": "completed"
+    }
+  ]
+}

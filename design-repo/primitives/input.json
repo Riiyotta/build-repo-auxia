@@ -1,0 +1,13 @@
+{
+  "id": "input",
+  "type": "primitive",
+  "description": "Text/email/tel/search field. The demo form and blog search are the only two real usages in source; both are local React state with no network request.",
+  "measuredFrom": "src/pages/Demo.jsx:83-108; src/pages/Blog.jsx:262-270",
+  "props": {
+    "name": { "type": "string" },
+    "label": { "type": "string", "maxWords": 6 },
+    "type": { "type": "enum", "values": ["text", "email", "tel", "search"] },
+    "required": { "type": "boolean", "default": false }
+  },
+  "constraints": { "networkPolicy": "must-not-fabricate — never wire a generated input to a real external endpoint; local state / disabled submission only, matching source." }
+}

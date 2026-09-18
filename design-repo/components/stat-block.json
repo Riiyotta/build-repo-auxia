@@ -1,0 +1,10 @@
+{
+  "id": "stat-block",
+  "type": "component",
+  "description": "Large numeral + label pair. Used on about.hero (3 stats) and case-studies.rail (1 stat per card).",
+  "measuredFrom": "src/pages/AboutUs.jsx:105-113; src/components/CaseStudies.jsx (case-studies_stat)",
+  "props": {
+    "value": { "type": "string", "maxWords": 3 },
+    "label": { "type": "string", "maxWords": 8 }
+  }
+}

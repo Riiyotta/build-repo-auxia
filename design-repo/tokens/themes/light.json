@@ -1,0 +1,13 @@
+{
+  "themeId": "light",
+  "description": "The site's single production theme (light/paper). Verified during this build: grep across src/ and tailwind.config.js found no dark-mode media query, no 'dark:' Tailwind variant, and no theme-toggle component anywhere — this is a single-theme site, not a light theme with an unbuilt dark counterpart.",
+  "verification": "grep -rn \"dark:\\|prefers-color-scheme\\|ThemeProvider\\|useTheme\" src/ -> 0 matches (dark-mode-shaped) at build time.",
+  "resolves": {
+    "surface.page": "#f0efe3",
+    "surface.brand": "#0b4fff",
+    "surface.dark": "#232323",
+    "text.primary": "#232323",
+    "text.inverse": "#f0efe3",
+    "border.default": "#e2e1d3"
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "pageId": "home",
+  "route": "/",
+  "template": "home",
+  "retrievalEligible": true,
+  "nodes": [
+    {
+      "section": "shell.banner",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "none", "reducedMotionFallback": "none" },
+      "content": { "text": "Auxia Launches Agent Studio", "href": "#" }
+    },
+    {
+      "section": "shell.navbar",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "none", "reducedMotionFallback": "none" },
+      "content": {
+        "logoAssetRole": "logo.self",
+        "links": [
+          { "label": "About", "href": "/about-us", "internal": true },
+          { "label": "Documentation", "href": "#", "disabled": true },
+          { "label": "Blog", "href": "/blog", "internal": true }
+        ],
+        "products": [
+          { "label": "Agent Studio", "href": "/agent-studio", "internal": true },
+          { "label": "Decisioning", "href": "/decisioning", "internal": true }
+        ]
+      }
+    },
+    {
+      "section": "hero.marketing",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "fd-h2 word reveal + fd-fade-children", "reducedMotionFallback": "render final state, no SplitText/stagger animation" },
+      "content": {
+        "heading": "The marketer, multiplied",
+        "workflowSteps": [
+          "Analyze existing campaigns",
+          "Build campaign brief",
+          "Define goals, guardrails",
+          "Pull content from CMS",
+          "Route for approval",
+          "Send via Auxia Decisioning"
+        ],
+        "audiences": [
+          ["Adventure Seeker", "2+ Friends Referred", "Sorted by Lowest Price"],
+          ["Luxury Traveler", "3+ Bookings in 12M", "Logged into Loyalty"],
+          ["Family Planner", "App Installed", "Reviewed Past Stay"]
+        ],
+        "visualAssetRole": "diagram.generated-ui"
+      }
+    },
+    {
+      "section": "brands.marquee",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "marquee-rail css infinite scroll, 42.2px/sec", "reducedMotionFallback": "static single row, no translate animation" },
+      "content": {
+        "heading": "Leading brands grow with Auxia",
+        "logos": [
+          { "assetRole": "logo.invented-wordmark", "slug": "northwind" },
+          { "assetRole": "logo.invented-wordmark", "slug": "lumenline" },
+          { "assetRole": "logo.invented-wordmark", "slug": "cascadia" },
+          { "assetRole": "logo.invented-wordmark", "slug": "quanta" },
+          { "assetRole": "logo.invented-wordmark", "slug": "verdant" },
+          { "assetRole": "logo.invented-wordmark", "slug": "orbital" },
+          { "assetRole": "logo.invented-wordmark", "slug": "meridian" },
+          { "assetRole": "logo.invented-wordmark", "slug": "stratafold" },
+          { "assetRole": "logo.invented-wordmark", "slug": "halcyon" }
+        ]
+      }
+    },
+    {
+      "section": "marketing.split",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "fd-h2 + fd-paragraph reveal on copy; dot-field-canvas static diagrams", "reducedMotionFallback": "static final state, canvases still render" },
+      "content": {
+        "headingLead": "Marketing didn't get harder.",
+        "headingMuted": "It got stuck.",
+        "body": [
+          "Marketers are drowning in the workflows and coordination that teams and tools require, only to deliver campaigns and journeys that require constant oversight. Meanwhile, customers are pushed through static rules built for segments, not individuals.",
+          "Auxia's agents work across your stack and create a unique journey for every customer, while continuously learning and optimizing the next interaction. Marketing stops resetting and performance compounds over time."
+        ],
+        "messCanvasAssetRole": "diagram.generated-ui",
+        "cleanCanvasAssetRole": "diagram.generated-ui"
+      }
+    },
+    {
+      "section": "stack.panels",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "fd-fade-children per panel", "reducedMotionFallback": "static final state" },
+      "content": {
+        "layers": [
+          { "title": "Auxia Agent Studio", "body": "AI marketing agents that research, plan, build, QA, and ship, orchestrating work across the tools you already run, from Braze to Salesforce Marketing Cloud." },
+          { "title": "Auxia Decisioning", "body": "Real-time 1:1 decisioning ranks the next-best experience for every visitor on every signal, so every touchpoint is personalized at scale." },
+          { "title": "Data & Context", "body": "Enterprise data unified across CRM, CDP, and warehouse into a living context graph that knows your business and is updated every run." }
+        ]
+      }
+    },
+    {
+      "section": "process.flowchart",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "scroll-linked connector draw-in per step, tag pill fade-in", "reducedMotionFallback": "static full connectors, tags at rest opacity" },
+      "content": {
+        "heading": "Become a 10x Marketer",
+        "lede": "AI Agents learn your business, accelerate your workflows, and personalize each customer's ideal touchpoint, with autonomy you define and control.",
+        "steps": [
+          { "tag": "ask Agent" },
+          { "title": "Spot weak campaigns", "body": "Agents continuously audit your repeat-purchase programs, separating what's working from what isn't and surfacing exactly where revenue is leaking before you have to ask.", "tag": "identifying next steps" },
+          { "title": "Build workflows & playbooks", "body": "Use natural language to build configurable, reusable playbooks that agents run for you across every program.", "tag": "reviewing Workflows & Playbooks" },
+          { "title": "Automate recurring work", "body": "Hand execution to the agents. They draft the experiment design, stand up the campaign in your stack, and adjust live programs end to end.", "tag": "identifying needed approvals" },
+          { "title": "Automate manual approvals", "body": "Agents route each decision to the right people in Slack, where your team already works. Approve, reject, or comment, and the agent picks it back up.", "tag": "Personalizing 1:1 Experiences" },
+          { "title": "Deliver 1:1 personalization at scale", "body": "Auxia Decisioning makes the per-customer call in real time, ranking content, offer, channel, and timing for each individual.", "tag": null }
+        ]
+      }
+    },
+    {
+      "section": "automations.field",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "pinned scroll-scrub reveal + numeric counter count-up", "reducedMotionFallback": "static field at rest opacity, counter renders final value with no count-up" },
+      "content": {
+        "counterLabel": "200 billion",
+        "subheading": "automated decisions served",
+        "automationNames": ["SALE CATEGORY VIEWED", "GIFT CARD APPLIED", "CHECKOUT STARTED", "OFFER APPLIED", "REVIEWS VIEWED", "PURCHASE COMPLETED"]
+      }
+    },
+    {
+      "section": "case-studies.rail",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "horizontal drag/scroll rail, cards fade in on scroll into view", "reducedMotionFallback": "static rail, cards at rest opacity, scroll-snap only" },
+      "content": {
+        "heading": "Powering personalized journeys at scale",
+        "cases": [
+          { "name": "NTT Docomo", "logoAssetRole": "logo.invented-wordmark", "body": "NTT Docomo is Japan's largest mobile carrier, serving over 90 million subscribers and generating annual revenue exceeding $35 billion.", "stat": "100M+", "statLabel": "dPoint club members" },
+          { "name": "Atlassian", "logoAssetRole": "logo.invented-wordmark", "body": "Atlassian is a global SaaS leader serving 300,000+ customers and millions of users with collaboration and developer tools like Jira and Confluence.", "stat": "300K+", "statLabel": "customers" }
+        ]
+      }
+    },
+    {
+      "section": "trusted.grid",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "fd-fade-children on pillar cards, GSAP-animated left-edge rule height", "reducedMotionFallback": "cards at rest opacity, rule renders full height statically" },
+      "content": {
+        "headingLead": "Built for enterprise.",
+        "headingMain": "Trusted globally.",
+        "body": "Built with enterprise-grade security, privacy, and reliability at its core, Auxia is trusted by industry leaders worldwide.",
+        "pillars": [
+          { "title": "SOC 2 Type II Certified", "body": "Independently verified security and controls." },
+          { "title": "Private By Design", "body": "Customer data is never used to train models or shared externally." },
+          { "title": "GDPR Compliant", "body": "Compliant with GDPR and global data protection standards." }
+        ]
+      }
+    },
+    {
+      "section": "cta.band",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "fd-h2 heading reveal; dot-field-canvas('cta-grid') static field", "reducedMotionFallback": "static final state, dot field still renders" },
+      "content": {
+        "heading": "Turn every customer interaction into impact.",
+        "primaryCta": "Request a Demo",
+        "secondaryCta": "See how it works"
+      }
+    },
+    {
+      "section": "shell.footer",
+      "required": true,
+      "repeatable": false,
+      "motion": { "pattern": "none", "reducedMotionFallback": "none" },
+      "content": {
+        "logoAssetRole": "logo.self",
+        "columns": [
+          { "heading": "company", "links": [ { "label": "About", "href": "/about-us", "internal": true }, { "label": "Linkedin", "href": "#" } ] },
+          { "heading": "product", "links": [ { "label": "Platform", "href": "#" }, { "label": "Documentation", "href": "#" } ] },
+          { "heading": "resources", "links": [ { "label": "Blog", "href": "/blog", "internal": true }, { "label": "info@example.com", "href": "#" } ] }
+        ]
+      }
+    }
+  ]
+}

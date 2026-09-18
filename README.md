@@ -1,6 +1,6 @@
 # build-repo-auxia
 
-A React 18 + Vite + Tailwind v3 rebuild of a marketing site, produced as a
+A React 19 + Vite + Tailwind v3 rebuild of a marketing site, produced as a
 front-end fidelity exercise: the design system and motion were measured from a
 rendered reference and reimplemented, rather than copied as markup.
 
@@ -10,6 +10,49 @@ npm run dev     # http://localhost:5390
 npm run build
 npm run lint
 ```
+
+## Information architecture
+
+`ia.json` is the hand-edited source of truth for the site's routes, templates
+and reusable sections; `IA.md` and `matrix.csv` are generated from it by
+`build.mjs` and should never be hand-edited. `validate.mjs` checks `ia.json`'s
+own internal claims (route sums, section references, category coverage)
+before you trust it.
+
+```bash
+node validate.mjs   # checks ia.json's internal consistency
+node build.mjs       # regenerates IA.md and matrix.csv from ia.json
+```
+
+All 8 named routes plus the wildcard `*` are declared in one `<Routes>` block
+in `src/App.jsx`, wrapped in a single shared `Shell` (`Banner` + `Navbar` +
+page + `Footer`) with no pathname-based conditionals anywhere in those three
+chrome components — so all 9 routes carry identical shell chrome. That yields
+8 distinct page templates (the two product routes, `/agent-studio` and
+`/decisioning`, are similar enough to share most of their section list but
+differ in two real, verified ways — see below — so they're modeled as two
+templates rather than one with hidden conditionals). Findings:
+
+- **3 shell sections** (`shell.banner`, `shell.navbar`, `shell.footer`) are
+  the only sections shared across all 8 templates and all 9 routes — every
+  other section is used by at most 3 templates.
+- **10 of 25 sections are shared** across more than one template; the other
+  **15 are single-use** and stay page-local (e.g. all 3 About-page sections,
+  both blog sections, the demo form, legal prose) rather than being built as
+  speculative shared components.
+- The two product pages are the clearest near-duplicate pair worth watching:
+  `hero.product`, `brands.marquee`, `features.rows`, `use-case.grid` and
+  `prefooter.crosssell` are shared between them, but `/agent-studio` carries
+  a `case-studies.rail` and a closing `cta.band` that `/decisioning` does
+  not — `/decisioning`'s `prefooter.crosssell` closes the page instead.
+  `use-case.grid` is also shared but renders a different column/card count
+  per route (3 cols/6 cards vs. 4 cols/4 cards).
+- Legal/long-form is the single largest template by route count (2 of 9
+  routes, `/privacy-policy` and `/terms`) sharing one `legal.prose` section
+  and layout shell — every other template covers exactly 1 route.
+
+See `IA.md` for the full per-template section tables and section reference,
+and `matrix.csv` for a section × template spreadsheet view.
 
 ## Approach
 

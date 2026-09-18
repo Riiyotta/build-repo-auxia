@@ -1,0 +1,276 @@
+{
+  "$comment": "Derived from design-repo/ (templates/templates.json, sections/*.json, extraction/measured-values.json) — a separate, already-built and pushed N0 artifact at /Users/riyaghosh/V2 cloned/auxia/design-repo/. That repo documents 7 templates (it models /agent-studio and /decisioning as one 'product' template with variant conditions on 2 sections). This ia.json splits that template in two (template.product-agent-studio / template.product-decisioning) so every section's routeCount here is exact rather than approximated across a variant boundary — see the note on cta.band and case-studies.rail below. Route and section facts themselves are unchanged from the design-repo's measured evidence.",
+  "meta": {
+    "source": "Auxia — React 19 + Vite + Tailwind v3 rebuild of a Webflow marketing site. All 8 named routes plus the wildcard '*' are declared in src/App.jsx's single <Routes> block, wrapped in one shared Shell (Banner + Navbar + ...routes... + Footer) with no pathname-based conditionals in any of the three chrome components.",
+    "status": "measured-from-source",
+    "productionApproved": false,
+    "totalRoutes": 9,
+    "totalTemplates": 8,
+    "generatedBy": "ia-builder skill, cross-checked against design-repo/registry.manifest.json and design-repo/extraction/measured-values.json"
+  },
+  "categories": {
+    "SHELL": "Chrome present identically on all 9 routes: announcement banner, primary nav, and footer, rendered once by the shared Shell wrapper in src/App.jsx regardless of page.",
+    "HERO": "Page-opening block establishing that page's core value proposition; always the first content section after shell chrome.",
+    "PROOF": "Social and customer proof: logo strip, customer case-study rail, and trust/compliance pillars.",
+    "PRODUCT": "Product-explanation and capability modules: problem/solution framing, the product stack, workflow diagrams, feature rows, use-case grids, and scale/automation statements.",
+    "ABOUT": "About-page-only narrative blocks: mission statement, company values, hiring cross-sell.",
+    "CONTENT": "Blog and legal long-form content: featured post spotlight, filterable post grid, legal document layout.",
+    "CONVERSION": "Conversion asks: closing CTA band, sibling-product cross-sell, demo-request form.",
+    "UTILITY": "Fallback content for any route that matches nothing else."
+  },
+  "sections": {
+    "shell.banner": {
+      "category": "SHELL",
+      "description": "Top-of-page announcement bar driving awareness of a new launch. Text + link only, no motion.",
+      "scope": "Present identically on all 9 routes (all 8 named routes plus the wildcard 404) — rendered once by the shared Shell wrapper, first element on every page.",
+      "implementedBy": "src/components/Banner.jsx"
+    },
+    "shell.navbar": {
+      "category": "SHELL",
+      "description": "Primary site navigation and brand mark: up to 3 nav links and up to 2 product links. Position:relative, constant height, never sticky.",
+      "scope": "Present identically on all 9 routes — verified no useLocation/pathname conditional in Navbar.jsx itself; App.jsx's own doc comment naming only 4 routes is stale.",
+      "implementedBy": "src/components/Navbar.jsx"
+    },
+    "shell.footer": {
+      "category": "SHELL",
+      "description": "Closing site chrome: oversized self wordmark, up to 3 link columns, legal line. All outbound links point at '#' rather than real external destinations.",
+      "scope": "Present identically on all 9 routes as the final element of the shared Shell.",
+      "implementedBy": "src/components/Footer.jsx"
+    },
+    "hero.marketing": {
+      "category": "HERO",
+      "description": "Homepage hero: the 1:1 personalization pitch headline plus an animated workflow/audience visual (desktop) or a horizontally-scrolling card row (mobile, a structural swap not a resize).",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Hero.jsx"
+    },
+    "hero.product": {
+      "category": "HERO",
+      "description": "Product-page hero establishing the specific product's value prop. Two content variants sharing one contract: 'agent-studio' (prompts list, generated-UI visual) and 'decisioning' (users/tags, offers list, solid-blue ground, no dot field).",
+      "scope": "Present on both product routes (2 routes: /agent-studio and /decisioning), rendered by two distinct components under one section contract.",
+      "implementedBy": "src/components/AgentHero.jsx + src/components/DecisionHero.jsx"
+    },
+    "hero.about": {
+      "category": "HERO",
+      "description": "About-page hero: mission statement over a dark (#191919) ground plus exactly 3 real headline stats.",
+      "scope": "Present only on /about-us (1 route).",
+      "implementedBy": "src/pages/AboutUs.jsx:40-118"
+    },
+    "brands.marquee": {
+      "category": "PROOF",
+      "description": "Social-proof logo strip, CSS infinite-scroll marquee (measured ~42.2px/sec). All 9 logos are original invented wordmarks standing in for real third-party marks — never a real company's logo.",
+      "scope": "Present on the homepage and both product pages (3 routes total): /, /agent-studio, /decisioning.",
+      "implementedBy": "src/components/Brands.jsx"
+    },
+    "case-studies.rail": {
+      "category": "PROOF",
+      "description": "Customer proof: full-bleed horizontal rail of up to 8 case-study cards (a scrollable rail here, a real Splide carousel on the reference). Names/stats are Auxia's own published claims; logos are the same invented-wordmark set as brands.marquee.",
+      "scope": "Present on the homepage and /agent-studio only (2 routes total) — confirmed absent from /decisioning.",
+      "implementedBy": "src/components/CaseStudies.jsx"
+    },
+    "trusted.grid": {
+      "category": "PROOF",
+      "description": "Trust/compliance pillars (SOC2, privacy, GDPR) — exactly 3 pillar cards over a dark ground with a GSAP-animated left-edge rule.",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Trusted.jsx"
+    },
+    "marketing.split": {
+      "category": "PRODUCT",
+      "description": "Problem statement on a dark ground contrasting a messy vs. clean customer journey via two generated-UI diagrams (redrawn static content, not frame-by-frame animation).",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Marketing.jsx"
+    },
+    "stack.panels": {
+      "category": "PRODUCT",
+      "description": "The 3-layer product stack (Agent Studio / Decisioning / Data & Context) as three full-width stacked panels — explicitly not a 3-column grid.",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Stack.jsx"
+    },
+    "process.flowchart": {
+      "category": "PRODUCT",
+      "description": "6-step agent workflow as a literal vertical flowchart: SVG connector paths and tag pills between steps (1 opening prompt wrap + 5 real stage entries).",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Process.jsx"
+    },
+    "automations.field": {
+      "category": "PRODUCT",
+      "description": "Scale statement: a live-decision counter over a dense, static 36-row field of automation names, revealed by pinned scroll-scrub — explicitly not an auto-scrolling marquee.",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Automations.jsx"
+    },
+    "features.rows": {
+      "category": "PRODUCT",
+      "description": "Alternating image/copy feature rows (4-6 items) with an animated canvas connector between rows, closed by a 4-card enterprise-assurance block nested inside the last row's content.",
+      "scope": "Present on both product routes (2 routes: /agent-studio and /decisioning).",
+      "implementedBy": "src/components/FeatureRows.jsx + src/components/FeaturesBottom.jsx"
+    },
+    "use-case.grid": {
+      "category": "PRODUCT",
+      "description": "Use-case card grid, column count and card count vary by product: 3 columns / 6 cards on /agent-studio, 4 columns / 4 cards on /decisioning.",
+      "scope": "Present on both product routes (2 routes), with differing cols/card-count per route.",
+      "implementedBy": "src/components/UseCaseGrid.jsx"
+    },
+    "about.market": {
+      "category": "ABOUT",
+      "description": "Mission statement over a blue brand-surface ground with a real team photo.",
+      "scope": "Present only on /about-us (1 route).",
+      "implementedBy": "src/pages/AboutUs.jsx:120-160"
+    },
+    "about.values": {
+      "category": "ABOUT",
+      "description": "Company values, exactly 5 entries, presented as a zig-zag threaded list on desktop (a static SVG zig-zag line, scroll-drawn) that collapses to a plain column below 992px.",
+      "scope": "Present only on /about-us (1 route).",
+      "implementedBy": "src/pages/AboutUs.jsx:162-263"
+    },
+    "about.team": {
+      "category": "ABOUT",
+      "description": "Hiring/careers cross-sell closing the about page — the only template where the last content section is not a cta.band/prefooter; site-wide shell.footer still follows it.",
+      "scope": "Present only on /about-us (1 route).",
+      "implementedBy": "src/pages/AboutUs.jsx:265-314"
+    },
+    "blog.featured": {
+      "category": "CONTENT",
+      "description": "Featured post spotlight rendered above the filterable listing; always the first content section on the blog index.",
+      "scope": "Present only on /blog (1 route).",
+      "implementedBy": "src/pages/Blog.jsx:165-215"
+    },
+    "blog.list": {
+      "category": "CONTENT",
+      "description": "Filterable/searchable card grid of blog posts with pagination control. Filtering is local-state only, no network request; responsive 3/2/1-column grid.",
+      "scope": "Present only on /blog (1 route).",
+      "implementedBy": "src/pages/Blog.jsx:216-357"
+    },
+    "legal.prose": {
+      "category": "CONTENT",
+      "description": "Long-form legal document layout: sticky TOC rail + rich-text column, identical shape between the two legal pages. Body prose is representative placeholder text; a visible role=\"note\" warning banner disclosing this is required and confirmed rendered on both pages.",
+      "scope": "Present on both legal routes (2 routes: /privacy-policy and /terms), sharing an identical layout shell.",
+      "implementedBy": "src/pages/PrivacyPolicy.jsx + src/pages/Terms.jsx"
+    },
+    "cta.band": {
+      "category": "CONVERSION",
+      "description": "Closing full-width conversion band with a live dot-field canvas backdrop, heading and primary/secondary CTA.",
+      "scope": "Present on the homepage, /blog, and /agent-studio (3 routes total) — absent on /decisioning, whose prefooter.crosssell closes that page instead.",
+      "implementedBy": "src/components/CTA.jsx"
+    },
+    "prefooter.crosssell": {
+      "category": "CONVERSION",
+      "description": "Cross-sells the sibling product before the footer. On /decisioning this is the last content section before shell.footer; on /agent-studio a cta.band follows it instead.",
+      "scope": "Present on both product routes (2 routes: /agent-studio and /decisioning).",
+      "implementedBy": "src/components/Prefooter.jsx"
+    },
+    "demo.form": {
+      "category": "CONVERSION",
+      "description": "Demo-request lead form: copy rail plus a local-state-only form. Performs zero network requests — the real reference posts to HubSpot and mounts a Cloudflare Turnstile widget, neither reproduced here.",
+      "scope": "Present only on /demo (1 route).",
+      "implementedBy": "src/pages/Demo.jsx"
+    },
+    "utility.not-found": {
+      "category": "UTILITY",
+      "description": "404 fallback for any unmatched route: heading, body copy, and a link back to home.",
+      "scope": "Present only on the wildcard '*' route (1 route).",
+      "implementedBy": "src/App.jsx#NotFound"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Homepage",
+      "routeCount": 1,
+      "routes": ["/"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "hero.marketing", "brands.marquee", "marketing.split", "stack.panels",
+        "process.flowchart", "automations.field", "case-studies.rail", "trusted.grid",
+        "cta.band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-agent-studio",
+      "name": "Product page — Agent Studio",
+      "routeCount": 1,
+      "routes": ["/agent-studio"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "hero.product", "brands.marquee", "features.rows", "use-case.grid", "case-studies.rail",
+        "prefooter.crosssell", "cta.band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-decisioning",
+      "name": "Product page — Decisioning",
+      "routeCount": 1,
+      "routes": ["/decisioning"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "hero.product", "brands.marquee", "features.rows", "use-case.grid",
+        "prefooter.crosssell",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.about",
+      "name": "About Us",
+      "routeCount": 1,
+      "routes": ["/about-us"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "hero.about", "about.market", "about.values", "about.team",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.blog-index",
+      "name": "Blog index",
+      "routeCount": 1,
+      "routes": ["/blog"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "blog.featured", "blog.list",
+        "cta.band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.demo-form",
+      "name": "Demo request form",
+      "routeCount": 1,
+      "routes": ["/demo"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "demo.form",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.legal",
+      "name": "Legal / long-form prose",
+      "routeCount": 2,
+      "routes": ["/privacy-policy", "/terms"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "legal.prose",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.not-found",
+      "name": "404 fallback",
+      "routeCount": 1,
+      "routes": ["*"],
+      "chrome": "full",
+      "sections": [
+        "shell.banner", "shell.navbar",
+        "utility.not-found",
+        "shell.footer"
+      ]
+    }
+  ]
+}

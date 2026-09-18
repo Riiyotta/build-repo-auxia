@@ -1,0 +1,27 @@
+section,category,templates,routes,Homepage,Product page — Agent Studio,Product page — Decisioning,About Us,Blog index,Demo request form,Legal / long-form prose,404 fallback
+shell.banner,SHELL,8,9,x,x,x,x,x,x,x,x
+shell.navbar,SHELL,8,9,x,x,x,x,x,x,x,x
+shell.footer,SHELL,8,9,x,x,x,x,x,x,x,x
+brands.marquee,PROOF,3,3,x,x,x,,,,,
+cta.band,CONVERSION,3,3,x,x,,,x,,,
+hero.product,HERO,2,2,,x,x,,,,,
+case-studies.rail,PROOF,2,2,x,x,,,,,,
+features.rows,PRODUCT,2,2,,x,x,,,,,
+use-case.grid,PRODUCT,2,2,,x,x,,,,,
+prefooter.crosssell,CONVERSION,2,2,,x,x,,,,,
+legal.prose,CONTENT,1,2,,,,,,,x,
+hero.marketing,HERO,1,1,x,,,,,,,
+hero.about,HERO,1,1,,,,x,,,,
+trusted.grid,PROOF,1,1,x,,,,,,,
+marketing.split,PRODUCT,1,1,x,,,,,,,
+stack.panels,PRODUCT,1,1,x,,,,,,,
+process.flowchart,PRODUCT,1,1,x,,,,,,,
+automations.field,PRODUCT,1,1,x,,,,,,,
+about.market,ABOUT,1,1,,,,x,,,,
+about.values,ABOUT,1,1,,,,x,,,,
+about.team,ABOUT,1,1,,,,x,,,,
+blog.featured,CONTENT,1,1,,,,,x,,,
+blog.list,CONTENT,1,1,,,,,x,,,
+demo.form,CONVERSION,1,1,,,,,,x,,
+utility.not-found,UTILITY,1,1,,,,,,,,x
+ROUTE COUNT,,,9,1,1,1,1,1,1,2,1
